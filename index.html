@@ -4,16 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>eremitecodex.art — Technical Artist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:#050505;
+  background:#020202;
   color:#e0e0e0;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:300;
   line-height:1.65;
   font-size:15px;
@@ -28,7 +25,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   position:fixed;
   inset:0;
   z-index:9999;
-  background:#050505;
+  background:#020202;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -41,7 +38,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   pointer-events:none;
 }
 .loader-mark{
-  font-family:'Syne',sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
   font-size:13px;
   letter-spacing:0.28em;
@@ -87,14 +84,14 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b1{
   width:70vw;height:70vw;
-  background:#2a2a2a;
+  background:#141414;
   top:-20%;left:-16%;
   animation:floatA 16s ease-in-out infinite;
   opacity:0.4;
 }
 .ambient-blob.b2{
   width:55vw;height:55vw;
-  background:#3d3d3d;
+  background:#1c1c1c;
   bottom:-16%;right:-10%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-5s;
@@ -102,7 +99,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b3{
   width:48vw;height:48vw;
-  background:#1a1a1a;
+  background:#0a0a0a;
   top:30%;left:40%;
   animation:floatC 16s ease-in-out infinite;
   animation-delay:-9s;
@@ -110,7 +107,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b4{
   width:42vw;height:42vw;
-  background:#333;
+  background:#161616;
   top:58%;left:-6%;
   animation:floatA 16s ease-in-out infinite;
   animation-delay:-12s;
@@ -118,7 +115,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b5{
   width:38vw;height:38vw;
-  background:#2e2e2e;
+  background:#121212;
   top:10%;right:4%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-7s;
@@ -170,7 +167,7 @@ header{
 }
 .identity{text-align:right}
 .identity h1{
-  font-family:'Syne',sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
   font-size:20px;
   letter-spacing:0.03em;
@@ -222,7 +219,7 @@ header{
 
 /* Title: continuous platinum sweep across full line */
 .intro h2{
-  font-family:'Syne',sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
   font-size:28px;
   letter-spacing:-0.01em;
@@ -282,7 +279,7 @@ header{
   margin-bottom:6px;
 }
 .section h3{
-  font-family:'Syne',sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
   font-size:20px;
   color:#fff;
@@ -291,10 +288,10 @@ header{
 
 .compare-btn{
   flex-shrink:0;
-  background:rgba(14,14,14,0.9);
-  border:1px solid rgba(255,255,255,0.1);
-  color:#ccc;
-  font-family:'Inter',system-ui,sans-serif;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.14);
+  color:#aaa;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:500;
   font-size:11px;
   letter-spacing:0.1em;
@@ -302,15 +299,13 @@ header{
   padding:10px 18px;
   border-radius:8px;
   cursor:pointer;
-  transition:background 0.2s, color 0.2s, border-color 0.2s;
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+  transition:color 0.2s, border-color 0.2s;
   white-space:nowrap;
 }
 .compare-btn:hover{
-  background:rgba(22,22,22,0.95);
+  background:transparent;
   color:#fff;
-  border-color:rgba(255,255,255,0.18);
+  border-color:rgba(255,255,255,0.28);
 }
 .compare-btn:disabled{
   opacity:0.5;
@@ -366,7 +361,7 @@ header{
   text-align:center;
 }
 .availability h2{
-  font-family:'Syne',sans-serif;
+  font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
   font-size:22px;
   color:#fff;
@@ -669,7 +664,8 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Whenever I design an asset, I try to read as much as possible about the game world. From a syringe to a bottle, everything ties back to the art direction, whether through color and text choices or through how the object actually functions. These models also carry specific technical solutions. Liquid shaders are expensive on mobile VR, so I built a material that reads as dark glass. PBR reflections make the bottle feel real without true depth or transparency. The syringes work with their full mechanical stages, designed carefully so audio and haptic feedback stay faithful at every step.</p>
+    <p>Whenever I design props, I try to read as much as possible about the game world. From a syringe to a bottle, everything ties back to the art direction, through color, text and how each object functions.</p>
+    <p>Liquid shaders are expensive on mobile VR, so I built a dark-glass material where PBR reflections sell the bottle without real depth or transparency. The syringes were designed to preserve their mechanical functionality and translate it into VR in a way that stays satisfying and immersive, including audio and haptic feedback at each stage.</p>
   </div>
 </section>
 
