@@ -23,13 +23,15 @@ body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block;background:transparent}
 
-/* Wireframe terrain canvas */
+/* Wireframe terrain — full viewport, fixed, seamless */
 #wire-terrain{
   position:fixed;
   inset:0;
+  width:100%;
+  height:100%;
   z-index:0;
   pointer-events:none;
-  opacity:0.18;
+  opacity:0.2;
 }
 
 .ambient{
@@ -43,7 +45,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   position:absolute;
   border-radius:50%;
   filter:blur(120px);
-  opacity:0.18;
+  opacity:0.16;
   animation:float 18s ease-in-out infinite;
 }
 .ambient-blob.b1{width:55vw;height:55vw;background:#1a3a5c;top:-15%;left:-10%;animation-delay:0s}
@@ -69,9 +71,7 @@ header{
   justify-content:space-between;
   align-items:center;
 }
-.identity{
-  text-align:left;
-}
+.identity{text-align:left}
 .identity h1{
   font-family:'Syne',sans-serif;
   font-weight:600;
@@ -154,16 +154,13 @@ header{
 .section{
   padding:56px 0;
   border-bottom:1px solid #121212;
-  text-align:center;
 }
 .section:last-of-type{border-bottom:none}
 
+/* Category + title stacked left above image */
 .section-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  margin-bottom:24px;
   text-align:left;
+  margin-bottom:20px;
 }
 .section-label{
   font-size:10px;
@@ -171,6 +168,7 @@ header{
   text-transform:uppercase;
   color:#555;
   font-weight:500;
+  margin-bottom:6px;
 }
 .section h3{
   font-family:'Syne',sans-serif;
@@ -180,51 +178,97 @@ header{
   letter-spacing:-0.01em;
 }
 
+/* Card under artwork */
+.visual-card{
+  background:rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:16px;
+  padding:16px;
+  margin:0 auto 20px;
+  max-width:752px;
+}
 .visual{
-  margin:0 auto 28px;
+  margin:0 auto;
   max-width:720px;
   background:transparent;
-  border-radius:16px;
+  border-radius:12px;
   overflow:hidden;
 }
-.visual img{margin:0 auto;border-radius:12px}
+.visual img{margin:0 auto;border-radius:10px}
 
 .compare{
   position:relative;
   overflow:hidden;
   background:transparent;
   user-select:none;
-  border-radius:12px;
+  border-radius:10px;
 }
-.compare img{width:100%;display:block;pointer-events:none;border-radius:12px}
+.compare img{width:100%;display:block;pointer-events:none;border-radius:10px}
 .compare .after{
-  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;border-radius:12px;
+  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;border-radius:10px;
 }
 .compare .after img{
-  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:12px;
-}
-.compare-handle{
-  position:absolute;top:0;bottom:0;left:0%;width:1px;
-  background:rgba(255,255,255,0.75);cursor:ew-resize;z-index:5;transform:translateX(-50%);
-}
-.compare-handle::before{
-  content:'';
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:20px;height:20px;border-radius:50%;
-  background:#fff;
-  box-shadow:0 2px 10px rgba(0,0,0,0.45);
-}
-.compare-range{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  opacity:0;cursor:ew-resize;z-index:10;margin:0;
+  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:10px;
 }
 
+/* Real slider below image */
+.compare-controls{
+  margin-top:14px;
+  padding:0 4px;
+}
+.compare-range{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:4px;
+  background:#2a2a2a;
+  border-radius:2px;
+  outline:none;
+  cursor:pointer;
+}
+.compare-range::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 1px 6px rgba(0,0,0,0.4);
+  cursor:ew-resize;
+  border:none;
+}
+.compare-range::-moz-range-thumb{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 1px 6px rgba(0,0,0,0.4);
+  cursor:ew-resize;
+  border:none;
+}
+.compare-range::-webkit-slider-runnable-track{
+  height:4px;
+  border-radius:2px;
+}
+.compare-range::-moz-range-track{
+  height:4px;
+  border-radius:2px;
+  background:#2a2a2a;
+}
+
+/* Card under description text */
+.text-card{
+  background:rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:14px;
+  padding:20px 24px;
+  max-width:600px;
+  margin:0 auto;
+}
 .section-text{
   color:#888;
   font-size:14.5px;
   line-height:1.7;
-  max-width:560px;
-  margin:0 auto;
   text-align:center;
 }
 .section-text p{margin-bottom:10px}
@@ -236,9 +280,7 @@ header{
   border-top:1px solid #161616;
   border-bottom:1px solid #161616;
 }
-.contact .section-header{
-  margin-bottom:32px;
-}
+.contact .section-header{margin-bottom:32px}
 .contact-form{
   max-width:480px;
   margin:0 auto;
@@ -325,9 +367,9 @@ footer a:hover{color:#fff}
 @media(max-width:700px){
   .intro h2{font-size:24px}
   .banner{border-radius:14px;aspect-ratio:16/10}
-  .section-header{flex-direction:column;gap:4px;align-items:flex-start}
+  .visual-card{padding:12px}
+  .text-card{padding:16px 18px}
   .visual{max-width:100%}
-  header{flex-direction:row}
 }
 </style>
 </head>
@@ -367,16 +409,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Featured</div>
     <h3>Tactical Watch + Radiometer</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/Wristwatches.png" alt="Tactical Watches">
-      <div class="after"><img src="images/Wristwatches-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/Wristwatches.png" alt="Tactical Watches">
+        <div class="after"><img src="images/Wristwatches-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>The strongest objects for the player are those whose design already merges technique and art. These watches contain their own interface logic and internal systems that connect to broader game mechanics. Instead of falling back to flat 2D UI, the devices themselves become the interface, increasing immersion.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>The strongest objects for the player are those whose design already merges technique and art. These watches contain their own interface logic and internal systems that connect to broader game mechanics. Instead of falling back to flat 2D UI, the devices themselves become the interface, increasing immersion.</p>
+    </div>
   </div>
 </section>
 
@@ -385,16 +432,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Mobile Realism</div>
     <h3>Harmonica</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/Harmonica.png" alt="Harmonica">
-      <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/Harmonica.png" alt="Harmonica">
+        <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
+    </div>
   </div>
 </section>
 
@@ -403,16 +455,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Mobile Optimization</div>
     <h3>Gas Mask</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/Gasmask.png" alt="Gasmask">
-      <div class="after"><img src="images/Gasmask-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/Gasmask.png" alt="Gasmask">
+        <div class="after"><img src="images/Gasmask-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Glass on mobile is expensive and often impossible to deliver with true reflections. A custom Master Material uses a matcap-based approach to approximate reflective response even when alpha-supported glass is not viable. Soft organic forms are particularly costly on constrained hardware — deliberate design choices such as the squared lens geometry allowed higher overall detail while remaining performant.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Glass on mobile is expensive and often impossible to deliver with true reflections. A custom Master Material uses a matcap-based approach to approximate reflective response even when alpha-supported glass is not viable. Soft organic forms are particularly costly on constrained hardware — deliberate design choices such as the squared lens geometry allowed higher overall detail while remaining performant.</p>
+    </div>
   </div>
 </section>
 
@@ -421,16 +478,21 @@ footer a:hover{color:#fff}
     <div class="section-label">VR Interaction</div>
     <h3>Grenade</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="50">
-      <img src="images/Grenade-Wireframe.png" alt="Wireframe">
-      <div class="after"><img src="images/Grenade.png" alt="Grenade"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="50" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="50">
+        <img src="images/Grenade-Wireframe.png" alt="Wireframe">
+        <div class="after"><img src="images/Grenade.png" alt="Grenade"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="50" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Designed specifically for VR interaction. The pin assembly is fully modeled so the fuze becomes visible when the pin is pulled. Research into recovered WWII MK2 grenades informed both the form and the weathered paint treatment. Every internal detail was intentional.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Designed specifically for VR interaction. The pin assembly is fully modeled so the fuze becomes visible when the pin is pulled. Research into recovered WWII MK2 grenades informed both the form and the weathered paint treatment. Every internal detail was intentional.</p>
+    </div>
   </div>
 </section>
 
@@ -439,11 +501,15 @@ footer a:hover{color:#fff}
     <div class="section-label">VR Weapon Design</div>
     <h3>Guns</h3>
   </div>
-  <div class="visual">
-    <img src="images/Makarov.png" alt="Guns">
+  <div class="visual-card">
+    <div class="visual">
+      <img src="images/Makarov.png" alt="Guns">
+    </div>
   </div>
-  <div class="section-text">
-    <p>Weapons for VR demand a different poly budget philosophy. Exposed mechanical parts receive denser geometry while less visible surfaces are optimized aggressively. Careful UV layout and material study of real ballistic surfaces are essential to keep fidelity without breaking performance targets.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Weapons for VR demand a different poly budget philosophy. Exposed mechanical parts receive denser geometry while less visible surfaces are optimized aggressively. Careful UV layout and material study of real ballistic surfaces are essential to keep fidelity without breaking performance targets.</p>
+    </div>
   </div>
 </section>
 
@@ -452,16 +518,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Game Development</div>
     <h3>Chessboard</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/Chessboard.png" alt="Chessboard">
-      <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/Chessboard.png" alt="Chessboard">
+        <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation — representing game development as a whole rather than a single asset.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation — representing game development as a whole rather than a single asset.</p>
+    </div>
   </div>
 </section>
 
@@ -470,16 +541,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Immersive UI</div>
     <h3>PDA</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/PDA.png" alt="PDA">
-      <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/PDA.png" alt="PDA">
+        <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
+    </div>
   </div>
 </section>
 
@@ -488,16 +564,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Historical Fidelity</div>
     <h3>Jerry Can</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/JerryCan.png" alt="Jerry Can">
-      <div class="after"><img src="images/JerryCan-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/JerryCan.png" alt="Jerry Can">
+        <div class="after"><img src="images/JerryCan-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Good assets begin with research. Historical study of the WWII “Jerry can”, its manufacturing marks and field wear informed every texture decision — from dust accumulation at the base to the slightly stylized paint degradation. The goal is player connection even through the most ordinary objects.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Good assets begin with research. Historical study of the WWII “Jerry can”, its manufacturing marks and field wear informed every texture decision — from dust accumulation at the base to the slightly stylized paint degradation. The goal is player connection even through the most ordinary objects.</p>
+    </div>
   </div>
 </section>
 
@@ -506,16 +587,21 @@ footer a:hover{color:#fff}
     <div class="section-label">Interaction Design</div>
     <h3>Props</h3>
   </div>
-  <div class="visual">
-    <div class="compare" data-compare data-default="0">
-      <img src="images/Props.png" alt="Props">
-      <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
-      <div class="compare-handle"></div>
-      <input type="range" min="0" max="100" value="0" class="compare-range">
+  <div class="visual-card">
+    <div class="visual">
+      <div class="compare" data-compare data-default="0">
+        <img src="images/Props.png" alt="Props">
+        <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
+      </div>
+    </div>
+    <div class="compare-controls">
+      <input type="range" min="0" max="100" value="0" class="compare-range" aria-label="Compare slider">
     </div>
   </div>
-  <div class="section-text">
-    <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
+    </div>
   </div>
 </section>
 
@@ -524,11 +610,15 @@ footer a:hover{color:#fff}
     <div class="section-label">Production Speed</div>
     <h3>Stylized RTS Buildings</h3>
   </div>
-  <div class="visual">
-    <img src="images/RTS.png" alt="Stylized RTS Buildings">
+  <div class="visual-card">
+    <div class="visual">
+      <img src="images/RTS.png" alt="Stylized RTS Buildings">
+    </div>
   </div>
-  <div class="section-text">
-    <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+  <div class="text-card">
+    <div class="section-text">
+      <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+    </div>
   </div>
 </section>
 
@@ -563,17 +653,16 @@ footer a:hover{color:#fff}
 </div>
 
 <script>
-/* Before/After compare sliders */
+/* Before/After compare — slider below image */
 document.querySelectorAll('[data-compare]').forEach(function(el){
-  var range = el.querySelector('.compare-range');
+  var card = el.closest('.visual-card');
+  var range = card ? card.querySelector('.compare-range') : null;
   var after = el.querySelector('.after');
-  var handle = el.querySelector('.compare-handle');
+  if(!range || !after) return;
   var def = el.getAttribute('data-default') || '0';
   range.value = def;
   function update(){
-    var v = range.value;
-    after.style.width = v + '%';
-    handle.style.left = v + '%';
+    after.style.width = range.value + '%';
   }
   range.addEventListener('input', update);
   update();
@@ -611,17 +700,18 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
   });
 })();
 
-/* Wireframe terrain background — low opacity, looping, mouse-reactive */
+/* Wireframe terrain — full viewport, seamless infinite grid, scroll-aware, mouse-reactive */
 (function(){
   var canvas = document.getElementById('wire-terrain');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W, H;
-  var cols = 48;
-  var rows = 28;
+  var cols = 56;
+  var rows = 36;
   var points = [];
   var time = 0;
+  var scrollY = 0;
   var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -640,59 +730,55 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
     for(var j = 0; j <= rows; j++){
       var row = [];
       for(var i = 0; i <= cols; i++){
-        row.push({
-          ox: i / cols,
-          oy: j / rows,
-          z: 0
-        });
+        row.push({ ox: i / cols, oy: j / rows, z: 0 });
       }
       points.push(row);
     }
   }
 
+  /* Seamless periodic noise so edges tile when scrolled */
   function noise(x, y, t){
-    return Math.sin(x * 3.1 + t * 0.6) * 0.35
-         + Math.sin(y * 2.7 - t * 0.45) * 0.3
-         + Math.sin((x + y) * 1.8 + t * 0.35) * 0.25
-         + Math.sin(x * 5.2 - y * 3.1 + t * 0.8) * 0.12;
+    return Math.sin(x * 4.2 + t * 0.55) * 0.32
+         + Math.sin(y * 3.6 - t * 0.4) * 0.28
+         + Math.sin((x + y) * 2.4 + t * 0.32) * 0.22
+         + Math.sin(x * 6.8 - y * 4.1 + t * 0.7) * 0.1;
   }
 
-  function project(p){
-    var perspective = 1.15;
-    var scale = Math.min(W, H) * 0.95;
+  function project(p, scrollOffset){
+    /* Map grid across full viewport; scrollOffset shifts world continuously */
+    var scaleX = W * 1.05;
+    var scaleY = H * 1.15;
     var cx = W * 0.5;
-    var cy = H * 0.58;
-    var x = (p.ox - 0.5) * scale;
-    var y = (p.oy - 0.5) * scale * 0.55;
-    var z = p.z * scale * 0.22;
-    var depth = 1 / (perspective - (p.oy - 0.5) * 0.35);
+    var cy = H * 0.52;
+    var x = (p.ox - 0.5) * scaleX;
+    var y = (p.oy - 0.5 + scrollOffset) * scaleY * 0.72;
+    var z = p.z * Math.min(W, H) * 0.18;
+    var depth = 1 / (1.12 - (p.oy - 0.5) * 0.28);
     return {
       x: cx + x * depth,
       y: cy + (y - z) * depth
     };
   }
 
-  function draw(){
+  function draw(scrollOffset){
     ctx.clearRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(140, 180, 220, 0.55)';
-    ctx.lineWidth = 0.7;
+    ctx.strokeStyle = 'rgba(130, 175, 215, 0.5)';
+    ctx.lineWidth = 0.65;
     ctx.lineJoin = 'round';
 
-    // horizontal lines
     for(var j = 0; j <= rows; j++){
       ctx.beginPath();
       for(var i = 0; i <= cols; i++){
-        var p = project(points[j][i]);
+        var p = project(points[j][i], scrollOffset);
         if(i === 0) ctx.moveTo(p.x, p.y);
         else ctx.lineTo(p.x, p.y);
       }
       ctx.stroke();
     }
-    // vertical lines
     for(var i = 0; i <= cols; i++){
       ctx.beginPath();
       for(var j = 0; j <= rows; j++){
-        var p = project(points[j][i]);
+        var p = project(points[j][i], scrollOffset);
         if(j === 0) ctx.moveTo(p.x, p.y);
         else ctx.lineTo(p.x, p.y);
       }
@@ -701,31 +787,31 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
   }
 
   function update(){
-    mouse.x += (mouse.tx - mouse.x) * 0.06;
-    mouse.y += (mouse.ty - mouse.y) * 0.06;
-
+    mouse.x += (mouse.tx - mouse.x) * 0.07;
+    mouse.y += (mouse.ty - mouse.y) * 0.07;
     var mx = (mouse.x - 0.5) * 2;
     var my = (mouse.y - 0.5) * 2;
 
     for(var j = 0; j <= rows; j++){
       for(var i = 0; i <= cols; i++){
         var p = points[j][i];
-        var n = noise(p.ox + mx * 0.15, p.oy + my * 0.12, time);
-        // mouse influence — gentle bulge near cursor
+        var n = noise(p.ox + mx * 0.12, p.oy + my * 0.1, time);
         var dx = p.ox - mouse.x;
         var dy = p.oy - mouse.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
-        var influence = Math.exp(-dist * dist * 8) * 0.55;
-        p.z = n + influence * (0.4 + Math.sin(time * 1.2) * 0.15);
+        var influence = Math.exp(-dist * dist * 7) * 0.5;
+        p.z = n + influence * (0.35 + Math.sin(time * 1.15) * 0.12);
       }
     }
   }
 
   function loop(){
     if(!reduced){
-      time += 0.012;
+      time += 0.011;
+      /* Continuous scroll offset — terrain keeps flowing as page scrolls */
+      var scrollOffset = (window.scrollY || 0) * 0.00035;
       update();
-      draw();
+      draw(scrollOffset);
     }
     requestAnimationFrame(loop);
   }
@@ -751,7 +837,7 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
   initGrid();
   if(reduced){
     update();
-    draw();
+    draw(0);
   } else {
     loop();
   }
