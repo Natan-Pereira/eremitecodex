@@ -380,18 +380,51 @@ header{
   font-size:14.5px;
   line-height:1.7;
 }
-.availability a.email-link{
+.availability-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
+}
+.availability a.email-link,
+.availability a.cv-btn{
   display:inline-block;
-  font-size:14px;
-  color:#ccc;
-  letter-spacing:0.02em;
-  border-bottom:1px solid #333;
-  padding-bottom:2px;
-  transition:color 0.2s, border-color 0.2s;
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:12px 20px;
+  border-radius:8px;
+  transition:background 0.2s, color 0.2s, border-color 0.2s;
+}
+.availability a.email-link{
+  background:rgba(14,14,14,0.9);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#ddd;
 }
 .availability a.email-link:hover{
+  background:rgba(24,24,24,0.95);
   color:#fff;
-  border-color:#777;
+  border-color:rgba(255,255,255,0.22);
+}
+.availability a.cv-btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.14);
+  color:#aaa;
+}
+.availability a.cv-btn:hover{
+  color:#fff;
+  border-color:rgba(255,255,255,0.28);
+}
+footer .copyright{
+  margin-top:18px;
+  font-size:11px;
+  color:#444;
+  letter-spacing:0.02em;
+  line-height:1.6;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 footer{
@@ -671,12 +704,16 @@ footer a:hover{color:#fff}
 <section class="availability">
   <h2>Open to opportunities</h2>
   <p>Available for full-time Technical Artist roles and contract work focused on high-fidelity assets and performance-constrained platforms. Remote worldwide, flexible with time zones, and open to relocation when needed.</p>
-  <a class="email-link" href="mailto:eremitecodex@protonmail.com">eremitecodex@protonmail.com</a>
+  <div class="availability-actions">
+    <a class="email-link" href="mailto:eremitecodex@protonmail.com">Get in touch</a>
+    <a class="cv-btn" href="PDF/Natan_P_Technical_Artist_CV.pdf" download="Natan_P_Technical_Artist_CV.pdf">Download CV</a>
+  </div>
 </section>
 
 <footer>
   <p>Natan P. · Technical Artist · São Paulo (UTC-3)</p>
   <p><a href="mailto:eremitecodex@protonmail.com">eremitecodex@protonmail.com</a></p>
+  <p class="copyright">© 2026 Natan P. All rights reserved. All images, videos and assets on this site are the exclusive property of the author and may not be reproduced, distributed or used without prior written permission.</p>
 </footer>
 
 </div>
