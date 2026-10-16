@@ -23,6 +23,7 @@ body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block;background:transparent}
 
+/* Full-site ambient — B&W, stronger contrast, covers entire page */
 .ambient{
   position:fixed;
   inset:0;
@@ -33,17 +34,71 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 .ambient-blob{
   position:absolute;
   border-radius:50%;
-  filter:blur(120px);
-  opacity:0.18;
-  animation:float 18s ease-in-out infinite;
+  filter:blur(100px);
+  opacity:0.35;
+  animation:float 14s ease-in-out infinite;
+  will-change:transform, opacity;
 }
-.ambient-blob.b1{width:55vw;height:55vw;background:#1a3a5c;top:-15%;left:-10%;animation-delay:0s}
-.ambient-blob.b2{width:40vw;height:40vw;background:#3a1a4a;bottom:-10%;right:-5%;animation-delay:-6s}
-.ambient-blob.b3{width:30vw;height:30vw;background:#1a4a3a;top:40%;left:50%;animation-delay:-12s}
+.ambient-blob.b1{
+  width:70vw;height:70vw;
+  background:#1a1a1a;
+  top:-20%;left:-15%;
+  animation-delay:0s;
+  opacity:0.5;
+}
+.ambient-blob.b2{
+  width:55vw;height:55vw;
+  background:#2e2e2e;
+  bottom:-15%;right:-10%;
+  animation-delay:-4s;
+  opacity:0.4;
+}
+.ambient-blob.b3{
+  width:45vw;height:45vw;
+  background:#0a0a0a;
+  top:30%;left:40%;
+  animation-delay:-8s;
+  opacity:0.55;
+}
+.ambient-blob.b4{
+  width:40vw;height:40vw;
+  background:#222;
+  top:60%;left:-5%;
+  animation-delay:-11s;
+  opacity:0.38;
+}
+.ambient-blob.b5{
+  width:35vw;height:35vw;
+  background:#181818;
+  top:10%;right:5%;
+  animation-delay:-6s;
+  opacity:0.42;
+}
 @keyframes float{
+  0%,100%{transform:translate(0,0) scale(1);opacity:0.35}
+  25%{transform:translate(4%,5%) scale(1.08);opacity:0.5}
+  50%{transform:translate(-3%,-4%) scale(0.94);opacity:0.28}
+  75%{transform:translate(2%,-3%) scale(1.04);opacity:0.45}
+}
+.ambient-blob.b1{animation-name:floatA}
+.ambient-blob.b2{animation-name:floatB}
+.ambient-blob.b3{animation-name:floatC}
+.ambient-blob.b4{animation-name:floatA}
+.ambient-blob.b5{animation-name:floatB}
+@keyframes floatA{
   0%,100%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(3%,4%) scale(1.05)}
-  66%{transform:translate(-2%,-3%) scale(0.97)}
+  33%{transform:translate(5%,6%) scale(1.1)}
+  66%{transform:translate(-4%,-5%) scale(0.92)}
+}
+@keyframes floatB{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(-5%,4%) scale(1.06)}
+  66%{transform:translate(4%,-3%) scale(0.95)}
+}
+@keyframes floatC{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(3%,-5%) scale(1.08)}
+  66%{transform:translate(-2%,6%) scale(0.93)}
 }
 
 .wrap{
@@ -102,7 +157,8 @@ header{
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.03),
     0 20px 60px rgba(0,0,0,0.5),
-    0 0 80px rgba(40,80,140,0.15);
+    0 0 80px rgba(40,40,40,0.2);
+  background:#0a0a0a;
 }
 .banner video{
   width:100%;
@@ -167,13 +223,14 @@ header{
   letter-spacing:-0.01em;
 }
 
+/* Transparent visual area — no dark card */
 .visual-card{
-  background:rgba(0,0,0,0.22);
-  border:1px solid rgba(255,255,255,0.04);
-  border-radius:16px;
-  padding:16px;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
   margin:0 auto 24px;
-  max-width:752px;
+  max-width:720px;
 }
 .visual{
   margin:0 auto;
@@ -181,56 +238,59 @@ header{
   background:transparent;
   border-radius:12px;
   overflow:hidden;
+  position:relative;
 }
-.visual img{margin:0 auto;border-radius:10px}
+.visual img{margin:0 auto;border-radius:12px}
 
 .compare{
   position:relative;
   overflow:hidden;
   background:transparent;
   user-select:none;
-  border-radius:10px;
+  border-radius:12px;
 }
-.compare img{width:100%;display:block;pointer-events:none;border-radius:10px}
+.compare img{width:100%;display:block;pointer-events:none;border-radius:12px}
 .compare .after{
-  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;border-radius:10px;
+  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;border-radius:12px;
 }
 .compare .after img{
-  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:10px;
+  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:12px;
 }
 
+/* Button flush against bottom of image */
 .compare-toggle{
   display:flex;
   justify-content:center;
-  margin-top:14px;
+  margin-top:0;
+  position:relative;
+  z-index:2;
 }
 .compare-btn{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#141414;
-  border:1px solid #2a2a2a;
-  color:#aaa;
+  margin-top:-1px;
+  background:rgba(12,12,12,0.85);
+  border:1px solid rgba(255,255,255,0.08);
+  border-top:none;
+  color:#ccc;
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:10px 22px;
+  border-radius:0 0 10px 10px;
   cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  transition:background 0.2s, border-color 0.2s, color 0.2s;
-  padding:0;
+  transition:background 0.2s, color 0.2s, border-color 0.2s;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 .compare-btn:hover{
-  background:#1c1c1c;
-  border-color:#3a3a3a;
+  background:rgba(20,20,20,0.95);
   color:#fff;
+  border-color:rgba(255,255,255,0.14);
 }
 .compare-btn:disabled{
-  opacity:0.45;
+  opacity:0.5;
   cursor:not-allowed;
-}
-.compare-btn svg{
-  width:20px;
-  height:20px;
-  display:block;
 }
 
 .section-text{
@@ -282,7 +342,7 @@ header{
 }
 .contact-form input:focus,
 .contact-form textarea:focus{
-  border-color:#3a5a7a;
+  border-color:#444;
   background:#0f0f0f;
 }
 .contact-form textarea{
@@ -337,8 +397,8 @@ footer a:hover{color:#fff}
 @media(max-width:700px){
   .intro h2{font-size:24px}
   .banner{border-radius:14px;aspect-ratio:16/10}
-  .visual-card{padding:12px}
   .visual{max-width:100%}
+  .compare-btn{font-size:10px;padding:9px 16px}
 }
 </style>
 </head>
@@ -348,6 +408,8 @@ footer a:hover{color:#fff}
   <div class="ambient-blob b1"></div>
   <div class="ambient-blob b2"></div>
   <div class="ambient-blob b3"></div>
+  <div class="ambient-blob b4"></div>
+  <div class="ambient-blob b5"></div>
 </div>
 
 <div class="wrap">
@@ -361,7 +423,7 @@ footer a:hover{color:#fff}
 </header>
 
 <div class="banner">
-  <video autoplay muted loop playsinline>
+  <video id="banner-video" autoplay muted loop playsinline preload="auto">
     <source src="Video/banner.mp4" type="video/mp4">
   </video>
 </div>
@@ -378,13 +440,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Wristwatches.png" alt="Tactical Watches">
         <div class="after"><img src="images/Wristwatches-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -399,13 +461,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Harmonica.png" alt="Harmonica">
         <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -420,13 +482,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Gasmask.png" alt="Gasmask">
         <div class="after"><img src="images/Gasmask-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -441,13 +503,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Grenade.png" alt="Grenade">
         <div class="after"><img src="images/Grenade-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -477,13 +539,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Chessboard.png" alt="Chessboard">
         <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -498,13 +560,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/PDA.png" alt="PDA">
         <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -519,13 +581,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/JerryCan.png" alt="Jerry Can">
         <div class="after"><img src="images/JerryCan-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -540,13 +602,13 @@ footer a:hover{color:#fff}
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare data-default="0">
+      <div class="compare" data-compare>
         <img src="images/Props.png" alt="Props">
         <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
       </div>
     </div>
     <div class="compare-toggle">
-      <button type="button" class="compare-btn" aria-label="Toggle wireframe"></button>
+      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -600,9 +662,34 @@ footer a:hover{color:#fff}
 </div>
 
 <script>
-var ICON_ART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/><path d="M21 15l-5-5L5 21"/></svg>';
-var ICON_WIRE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>';
+/* Force banner video autoplay + loop */
+(function(){
+  var v = document.getElementById('banner-video');
+  if(!v) return;
+  v.muted = true;
+  v.loop = true;
+  v.playsInline = true;
+  v.setAttribute('playsinline','');
+  v.setAttribute('webkit-playsinline','');
+  function tryPlay(){
+    var p = v.play();
+    if(p && typeof p.then === 'function'){
+      p.catch(function(){ /* autoplay blocked until interaction */ });
+    }
+  }
+  tryPlay();
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) tryPlay();
+  });
+  window.addEventListener('focus', tryPlay);
+  /* Some browsers need a user gesture fallback */
+  document.body.addEventListener('click', function once(){
+    tryPlay();
+    document.body.removeEventListener('click', once);
+  }, { once: true, passive: true });
+})();
 
+/* Animated wireframe toggle — 2s wipe */
 document.querySelectorAll('[data-compare]').forEach(function(el){
   var card = el.closest('.visual-card');
   var btn = card ? card.querySelector('.compare-btn') : null;
@@ -613,11 +700,10 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
   var animating = false;
   var duration = 2000;
 
-  function setIcon(){
-    btn.innerHTML = showingWire ? ICON_WIRE : ICON_ART;
-    btn.setAttribute('aria-label', showingWire ? 'Show final art' : 'Show wireframe');
+  function setLabel(){
+    btn.textContent = showingWire ? 'Hide Wireframe' : 'Show Wireframe';
   }
-  setIcon();
+  setLabel();
   after.style.width = '0%';
 
   function easeInOut(t){
@@ -642,7 +728,7 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
         requestAnimationFrame(frame);
       } else {
         showingWire = !showingWire;
-        setIcon();
+        setLabel();
         animating = false;
         btn.disabled = false;
       }
@@ -651,6 +737,7 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
   });
 });
 
+/* Contact form (Formspree) */
 (function(){
   var form = document.getElementById('contact-form');
   var status = document.getElementById('form-status');
