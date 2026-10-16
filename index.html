@@ -87,42 +87,42 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b1{
   width:70vw;height:70vw;
-  background:#1c3a52;
+  background:#2a2210;
   top:-20%;left:-16%;
   animation:floatA 16s ease-in-out infinite;
-  opacity:0.32;
+  opacity:0.45;
 }
 .ambient-blob.b2{
   width:55vw;height:55vw;
-  background:#3d2a18;
+  background:#4a3a18;
   bottom:-16%;right:-10%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-5s;
-  opacity:0.28;
+  opacity:0.38;
 }
 .ambient-blob.b3{
   width:48vw;height:48vw;
-  background:#2a3d28;
+  background:#1a1a1a;
   top:30%;left:40%;
   animation:floatC 16s ease-in-out infinite;
   animation-delay:-9s;
-  opacity:0.26;
+  opacity:0.5;
 }
 .ambient-blob.b4{
   width:42vw;height:42vw;
-  background:#4a3820;
+  background:#3d3014;
   top:58%;left:-6%;
   animation:floatA 16s ease-in-out infinite;
   animation-delay:-12s;
-  opacity:0.24;
+  opacity:0.35;
 }
 .ambient-blob.b5{
   width:38vw;height:38vw;
-  background:#243048;
+  background:#5c4a20;
   top:10%;right:4%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-7s;
-  opacity:0.3;
+  opacity:0.32;
 }
 @keyframes floatA{
   0%,100%{transform:translate(0,0) scale(1)}
@@ -220,7 +220,7 @@ header{
   border-bottom:1px solid #161616;
 }
 
-/* Title: "Love" heart pulse + fast platinum wave on each beat (~72 bpm) */
+/* Title: discrete heart pulse on "Love"; gold sweep across full line on each beat (~72 bpm) */
 .intro h2{
   font-family:'Syne',sans-serif;
   font-weight:600;
@@ -228,44 +228,51 @@ header{
   letter-spacing:-0.01em;
   margin-bottom:16px;
   display:inline-block;
-  color:#c8c8c8;
+  background:linear-gradient(
+    90deg,
+    #8a8a8a 0%,
+    #8a8a8a 18%,
+    #c4a35a 32%,
+    #f0e0b0 42%,
+    #fff8e0 50%,
+    #f0e0b0 58%,
+    #c4a35a 68%,
+    #8a8a8a 82%,
+    #8a8a8a 100%
+  );
+  background-size:220% 100%;
+  background-position:100% 50%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  animation:titleSweep 0.83s linear infinite;
 }
 .intro h2 .love{
   display:inline-block;
   transform-origin:center center;
   animation:heartPulse 0.83s ease-in-out infinite;
-  background:linear-gradient(
-    90deg,
-    #6a6a6a 0%,
-    #6a6a6a 22%,
-    #c0c0c0 38%,
-    #f5f5f5 50%,
-    #c0c0c0 62%,
-    #6a6a6a 78%,
-    #6a6a6a 100%
-  );
-  background-size:200% 100%;
-  -webkit-background-clip:text;
-  background-clip:text;
+  /* inherit gradient from parent via transparent fill still works when parent clips — keep same clip */
   -webkit-text-fill-color:transparent;
   color:transparent;
-  animation:
-    heartPulse 0.83s ease-in-out infinite,
-    platinumSweep 0.83s linear infinite;
 }
 .intro h2 .rest{
-  color:#c8c8c8;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
 }
 @keyframes heartPulse{
   0%{transform:scale(1)}
-  14%{transform:scale(1.08)}
-  28%{transform:scale(1)}
-  42%{transform:scale(1.05)}
-  56%{transform:scale(1)}
+  12%{transform:scale(1.035)}
+  24%{transform:scale(1)}
+  36%{transform:scale(1.02)}
+  48%{transform:scale(1)}
   100%{transform:scale(1)}
 }
-@keyframes platinumSweep{
+/* Sweep only during the beat window, then rest */
+@keyframes titleSweep{
   0%{background-position:100% 50%}
+  12%{background-position:100% 50%}
+  48%{background-position:-100% 50%}
   100%{background-position:-100% 50%}
 }
 
@@ -472,7 +479,8 @@ footer a:hover{color:#fff}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .intro h2 .love{animation:none;-webkit-text-fill-color:#c8c8c8;color:#c8c8c8;background:none;transform:none}
+  .intro h2{animation:none;-webkit-text-fill-color:#c8c8c8;color:#c8c8c8;background:none}
+  .intro h2 .love{animation:none;transform:none}
   .ambient-blob{animation:none}
 }
 </style>
