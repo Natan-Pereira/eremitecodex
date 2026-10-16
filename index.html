@@ -359,9 +359,43 @@ header{
 .section-text p{margin-bottom:10px}
 .section-text p:last-child{margin-bottom:0}
 
+
+.availability{
+  padding:64px 0 48px;
+  border-top:1px solid #161616;
+  text-align:center;
+}
+.availability h2{
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:22px;
+  color:#fff;
+  letter-spacing:-0.01em;
+  margin-bottom:14px;
+}
+.availability p{
+  max-width:480px;
+  margin:0 auto 20px;
+  color:#888;
+  font-size:14.5px;
+  line-height:1.7;
+}
+.availability a.email-link{
+  display:inline-block;
+  font-size:14px;
+  color:#ccc;
+  letter-spacing:0.02em;
+  border-bottom:1px solid #333;
+  padding-bottom:2px;
+  transition:color 0.2s, border-color 0.2s;
+}
+.availability a.email-link:hover{
+  color:#fff;
+  border-color:#777;
+}
+
 footer{
   padding:48px 0 64px;
-  border-top:1px solid #161616;
   text-align:center;
 }
 footer p{
@@ -469,7 +503,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
+    <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions, without relying on heavy reflection probes.</p>
   </div>
 </section>
 
@@ -490,7 +524,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Glass on mobile is expensive and often impossible to deliver with true reflections. A custom Master Material uses a matcap-based approach to approximate reflective response even when alpha-supported glass is not viable. Soft organic forms are particularly costly on constrained hardware — deliberate design choices such as the squared lens geometry allowed higher overall detail while remaining performant.</p>
+    <p>Glass on mobile is expensive and often impossible to deliver with true reflections. A custom Master Material uses a matcap-based approach to approximate reflective response even when alpha-supported glass is not viable. Soft organic forms are particularly costly on constrained hardware, so deliberate design choices such as the squared lens geometry allowed higher overall detail while remaining performant.</p>
   </div>
 </section>
 
@@ -528,7 +562,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Weapons for VR demand a different poly budget philosophy. Exposed mechanical parts receive denser geometry while less visible surfaces are optimized aggressively. Careful UV layout and material study of real ballistic surfaces are essential to keep fidelity without breaking performance targets.</p>
+    <p>Weapons for VR demand a different poly budget philosophy. Exposed mechanical parts receive denser geometry while less visible surfaces are optimized aggressively. Studying how real firearms work internally is essential so that, when the player looks closely at the mechanisms, everything still makes sense.</p>
   </div>
 </section>
 
@@ -549,7 +583,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation — representing game development as a whole rather than a single asset.</p>
+    <p>Currently developing a VR chess game focused on visual fidelity and a few innovative mechanics within the genre.</p>
   </div>
 </section>
 
@@ -570,7 +604,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
+    <p>The PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
   </div>
 </section>
 
@@ -591,7 +625,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Good assets begin with research. Historical study of the WWII “Jerry can”, its manufacturing marks and field wear informed every texture decision — from dust accumulation at the base to the slightly stylized paint degradation. The goal is player connection even through the most ordinary objects.</p>
+    <p>Good assets begin with research. Historical study of the WWII Jerry can, its manufacturing marks and field wear informed every texture decision, from dust accumulation at the base to the slightly stylized paint degradation. The goal is player connection even through the most ordinary objects.</p>
   </div>
 </section>
 
@@ -612,7 +646,7 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
+    <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions: the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
   </div>
 </section>
 
@@ -629,8 +663,15 @@ footer a:hover{color:#fff}
     </div>
   </div>
   <div class="section-text">
-    <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+    <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires inspired RTS in only two days.</p>
   </div>
+</section>
+
+
+<section class="availability">
+  <h2>Open to opportunities</h2>
+  <p>Available for full-time Technical Artist roles and contract work focused on high-fidelity assets and performance-constrained platforms. Remote worldwide, flexible with time zones, and open to relocation when needed.</p>
+  <a class="email-link" href="mailto:eremitecodex@protonmail.com">eremitecodex@protonmail.com</a>
 </section>
 
 <footer>
