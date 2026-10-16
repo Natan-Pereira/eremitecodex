@@ -220,7 +220,7 @@ header{
   border-bottom:1px solid #161616;
 }
 
-/* Platinum reflective sweep on title — continuous seamless loop */
+/* Title: "Love" heart pulse + fast platinum wave on each beat (~72 bpm) */
 .intro h2{
   font-family:'Syne',sans-serif;
   font-weight:600;
@@ -228,14 +228,20 @@ header{
   letter-spacing:-0.01em;
   margin-bottom:16px;
   display:inline-block;
+  color:#c8c8c8;
+}
+.intro h2 .love{
+  display:inline-block;
+  transform-origin:center center;
+  animation:heartPulse 0.83s ease-in-out infinite;
   background:linear-gradient(
     90deg,
     #6a6a6a 0%,
-    #6a6a6a 25%,
-    #b8b8b8 40%,
-    #f2f2f2 50%,
-    #b8b8b8 60%,
-    #6a6a6a 75%,
+    #6a6a6a 22%,
+    #c0c0c0 38%,
+    #f5f5f5 50%,
+    #c0c0c0 62%,
+    #6a6a6a 78%,
     #6a6a6a 100%
   );
   background-size:200% 100%;
@@ -243,7 +249,20 @@ header{
   background-clip:text;
   -webkit-text-fill-color:transparent;
   color:transparent;
-  animation:platinumSweep 2s linear infinite;
+  animation:
+    heartPulse 0.83s ease-in-out infinite,
+    platinumSweep 0.83s linear infinite;
+}
+.intro h2 .rest{
+  color:#c8c8c8;
+}
+@keyframes heartPulse{
+  0%{transform:scale(1)}
+  14%{transform:scale(1.08)}
+  28%{transform:scale(1)}
+  42%{transform:scale(1.05)}
+  56%{transform:scale(1)}
+  100%{transform:scale(1)}
 }
 @keyframes platinumSweep{
   0%{background-position:100% 50%}
@@ -453,7 +472,7 @@ footer a:hover{color:#fff}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .intro h2{animation:none;-webkit-text-fill-color:#c8c8c8;color:#c8c8c8;background:none}
+  .intro h2 .love{animation:none;-webkit-text-fill-color:#c8c8c8;color:#c8c8c8;background:none;transform:none}
   .ambient-blob{animation:none}
 }
 </style>
@@ -494,7 +513,7 @@ footer a:hover{color:#fff}
 </div>
 
 <section class="intro">
-  <h2>Love for the craft.</h2>
+  <h2><span class="love">Love</span><span class="rest"> for the craft.</span></h2>
   <p>Self-taught Brazilian Technical Artist based in São Paulo (UTC-3), with over a decade of experience in high-quality 3D asset production and technical art. Specialized in creating high-fidelity assets while maintaining strict performance targets for mobile, console, and other constrained platforms. Has provided services to companies worldwide, combining strong technical problem-solving with a full production pipeline approach.</p>
 </section>
 
