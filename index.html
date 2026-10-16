@@ -11,8 +11,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:#070707;
-  color:#e4e4e4;
+  background:#050505;
+  color:#e0e0e0;
   font-family:'Inter',system-ui,sans-serif;
   font-weight:300;
   line-height:1.65;
@@ -23,66 +23,97 @@ body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block;background:transparent}
 
-.bg-grid{
+/* Wireframe terrain canvas */
+#wire-terrain{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.18;
+}
+
+.ambient{
   position:fixed;
   inset:0;
   z-index:0;
   pointer-events:none;
   overflow:hidden;
-  opacity:0.18;
 }
-.bg-grid canvas{width:100%;height:100%;display:block}
+.ambient-blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.18;
+  animation:float 18s ease-in-out infinite;
+}
+.ambient-blob.b1{width:55vw;height:55vw;background:#1a3a5c;top:-15%;left:-10%;animation-delay:0s}
+.ambient-blob.b2{width:40vw;height:40vw;background:#3a1a4a;bottom:-10%;right:-5%;animation-delay:-6s}
+.ambient-blob.b3{width:30vw;height:30vw;background:#1a4a3a;top:40%;left:50%;animation-delay:-12s}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(3%,4%) scale(1.05)}
+  66%{transform:translate(-2%,-3%) scale(0.97)}
+}
 
 .wrap{
   position:relative;
   z-index:1;
-  max-width:1080px;
+  max-width:960px;
   margin:0 auto;
-  padding:0 28px;
+  padding:0 24px;
 }
 
 header{
-  padding:32px 0 0;
+  padding:40px 0 0;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
+}
+.identity{
+  text-align:left;
+}
+.identity h1{
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:20px;
+  letter-spacing:0.03em;
+  color:#fff;
+}
+.identity p{
+  font-size:12px;
+  color:#666;
+  margin-top:4px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
 }
 .logo{
-  width:42px;height:42px;
+  width:44px;height:44px;
   background:#111;
   border:1px solid #2a2a2a;
-  display:flex;
+  border-radius:10px;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
   font-size:9px;
   font-weight:500;
   letter-spacing:0.14em;
   color:#666;
-}
-.identity{text-align:right}
-.identity h1{
-  font-family:'Syne',sans-serif;
-  font-weight:600;
-  font-size:18px;
-  letter-spacing:0.04em;
-  color:#fff;
-}
-.identity p{
-  font-size:11px;
-  color:#666;
-  margin-top:3px;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
+  flex-shrink:0;
 }
 
 .banner{
-  margin:36px 0 0;
-  position:relative;
+  margin:36px auto 0;
   width:100%;
-  aspect-ratio:21/9;
+  max-width:860px;
+  aspect-ratio:16/9;
+  border-radius:20px;
   overflow:hidden;
-  border:1px solid #1e1e1e;
-  background:#0a0a0a;
+  position:relative;
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 80px rgba(40,80,140,0.15);
 }
 .banner video{
   width:100%;
@@ -90,16 +121,19 @@ header{
   object-fit:cover;
   display:block;
 }
-.banner-overlay{
+.banner::after{
+  content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(to top,rgba(7,7,7,0.7) 0%,transparent 45%);
+  background:linear-gradient(to top,rgba(5,5,5,0.5) 0%,transparent 40%);
   pointer-events:none;
+  border-radius:20px;
 }
 
 .intro{
   padding:56px 0 48px;
-  border-bottom:1px solid #1a1a1a;
+  text-align:center;
+  border-bottom:1px solid #161616;
 }
 .intro h2{
   font-family:'Syne',sans-serif;
@@ -108,71 +142,77 @@ header{
   color:#fff;
   letter-spacing:-0.01em;
   margin-bottom:16px;
-  max-width:520px;
 }
 .intro p{
-  max-width:560px;
-  color:#999;
+  max-width:540px;
+  margin:0 auto;
+  color:#888;
   font-size:15px;
   line-height:1.7;
 }
 
 .section{
-  padding:64px 0;
-  border-bottom:1px solid #141414;
+  padding:56px 0;
+  border-bottom:1px solid #121212;
+  text-align:center;
 }
 .section:last-of-type{border-bottom:none}
+
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:24px;
+  text-align:left;
+}
 .section-label{
   font-size:10px;
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:#555;
-  margin-bottom:10px;
   font-weight:500;
 }
 .section h3{
   font-family:'Syne',sans-serif;
   font-weight:600;
-  font-size:22px;
+  font-size:20px;
   color:#fff;
-  margin-bottom:28px;
   letter-spacing:-0.01em;
 }
 
 .visual{
-  margin-bottom:28px;
+  margin:0 auto 28px;
+  max-width:720px;
   background:transparent;
+  border-radius:16px;
+  overflow:hidden;
 }
-.visual img{margin:0 auto}
+.visual img{margin:0 auto;border-radius:12px}
 
 .compare{
   position:relative;
   overflow:hidden;
   background:transparent;
   user-select:none;
+  border-radius:12px;
 }
-.compare img{width:100%;display:block;pointer-events:none}
+.compare img{width:100%;display:block;pointer-events:none;border-radius:12px}
 .compare .after{
-  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;
+  position:absolute;top:0;left:0;height:100%;width:0%;overflow:hidden;border-radius:12px;
 }
 .compare .after img{
-  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;
+  position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:12px;
 }
 .compare-handle{
   position:absolute;top:0;bottom:0;left:0%;width:1px;
-  background:rgba(255,255,255,0.7);cursor:ew-resize;z-index:5;transform:translateX(-50%);
+  background:rgba(255,255,255,0.75);cursor:ew-resize;z-index:5;transform:translateX(-50%);
 }
 .compare-handle::before{
   content:'';
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:22px;height:22px;border-radius:50%;
-  background:#fff;border:none;
-  box-shadow:0 2px 10px rgba(0,0,0,0.4);
-}
-.compare-handle::after{
-  content:'';
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:6px;height:1px;background:#111;
+  width:20px;height:20px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.45);
 }
 .compare-range{
   position:absolute;top:0;left:0;width:100%;height:100%;
@@ -180,95 +220,141 @@ header{
 }
 
 .section-text{
-  color:#999;
+  color:#888;
   font-size:14.5px;
   line-height:1.7;
-  max-width:640px;
+  max-width:560px;
+  margin:0 auto;
+  text-align:center;
 }
-.section-text p{margin-bottom:12px}
+.section-text p{margin-bottom:10px}
 .section-text p:last-child{margin-bottom:0}
 
-.layout-side{
-  display:grid;
-  grid-template-columns:1.2fr 0.8fr;
-  gap:40px;
-  align-items:center;
+/* Contact form */
+.contact{
+  padding:56px 0 32px;
+  border-top:1px solid #161616;
+  border-bottom:1px solid #161616;
 }
-.layout-side .visual{margin-bottom:0}
-
-.props-special{position:relative}
-.props-special .text-overlay{
-  position:absolute;
-  top:20px;right:20px;
-  max-width:300px;
-  text-align:right;
-  z-index:2;
-  background:rgba(7,7,7,0.82);
-  backdrop-filter:blur(8px);
-  padding:18px 20px;
-  border:1px solid #2a2a2a;
+.contact .section-header{
+  margin-bottom:32px;
 }
-.props-special .text-overlay h3{
-  font-family:'Syne',sans-serif;
-  font-size:18px;
+.contact-form{
+  max-width:480px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.contact-form label{
+  display:block;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#666;
+  margin-bottom:6px;
+}
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  background:#0c0c0c;
+  border:1px solid #222;
+  border-radius:10px;
+  padding:14px 16px;
+  color:#e0e0e0;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:300;
+  outline:none;
+  transition:border-color 0.2s, background 0.2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#3a5a7a;
+  background:#0f0f0f;
+}
+.contact-form textarea{
+  min-height:120px;
+  resize:vertical;
+}
+.contact-form button{
+  align-self:flex-start;
+  margin-top:8px;
+  background:#1a1a1a;
+  border:1px solid #333;
   color:#fff;
-  margin-bottom:10px;
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  padding:14px 28px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background 0.2s, border-color 0.2s;
 }
-.props-special .text-overlay p{
-  font-size:13.5px;
-  line-height:1.55;
-  color:#bbb;
-  margin:0;
+.contact-form button:hover{
+  background:#222;
+  border-color:#555;
 }
+.contact-form button:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+.form-status{
+  font-size:13px;
+  color:#6a9;
+  min-height:20px;
+  margin-top:4px;
+}
+.form-status.error{color:#c66}
 
 footer{
   padding:48px 0 64px;
-  border-top:1px solid #1a1a1a;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
+  text-align:center;
 }
 footer p{
   font-size:12px;
   color:#555;
   letter-spacing:0.04em;
+  margin-bottom:6px;
 }
-footer a{color:#888;transition:color 0.2s}
+footer a{color:#777;transition:color 0.2s}
 footer a:hover{color:#fff}
 
-@media(max-width:780px){
-  .layout-side{grid-template-columns:1fr;gap:24px}
-  .props-special .text-overlay{
-    position:static;max-width:100%;text-align:left;margin-bottom:16px;
-  }
+@media(max-width:700px){
   .intro h2{font-size:24px}
-  .banner{aspect-ratio:16/9}
-  header{flex-direction:column;align-items:flex-start;gap:16px}
-  .identity{text-align:left}
+  .banner{border-radius:14px;aspect-ratio:16/10}
+  .section-header{flex-direction:column;gap:4px;align-items:flex-start}
+  .visual{max-width:100%}
+  header{flex-direction:row}
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid"><canvas id="grid"></canvas></div>
+<canvas id="wire-terrain"></canvas>
+
+<div class="ambient">
+  <div class="ambient-blob b1"></div>
+  <div class="ambient-blob b2"></div>
+  <div class="ambient-blob b3"></div>
+</div>
 
 <div class="wrap">
 
 <header>
-  <div class="logo">LOGO</div>
   <div class="identity">
     <h1>Natan P.</h1>
     <p>Technical Artist · Unreal Engine</p>
   </div>
+  <div class="logo">LOGO</div>
 </header>
 
 <div class="banner">
   <video autoplay muted loop playsinline>
     <source src="Video/banner.mp4" type="video/mp4">
   </video>
-  <div class="banner-overlay"></div>
 </div>
 
 <section class="intro">
@@ -277,8 +363,10 @@ footer a:hover{color:#fff}
 </section>
 
 <section class="section">
-  <div class="section-label">01 — Featured</div>
-  <h3>Tactical Watch + Radiometer</h3>
+  <div class="section-header">
+    <div class="section-label">Featured</div>
+    <h3>Tactical Watch + Radiometer</h3>
+  </div>
   <div class="visual">
     <div class="compare" data-compare data-default="0">
       <img src="images/Wristwatches.png" alt="Tactical Watches">
@@ -293,8 +381,28 @@ footer a:hover{color:#fff}
 </section>
 
 <section class="section">
-  <div class="section-label">02 — Mobile Optimization</div>
-  <h3>Gas Mask</h3>
+  <div class="section-header">
+    <div class="section-label">Mobile Realism</div>
+    <h3>Harmonica</h3>
+  </div>
+  <div class="visual">
+    <div class="compare" data-compare data-default="0">
+      <img src="images/Harmonica.png" alt="Harmonica">
+      <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
+      <div class="compare-handle"></div>
+      <input type="range" min="0" max="100" value="0" class="compare-range">
+    </div>
+  </div>
+  <div class="section-text">
+    <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Mobile Optimization</div>
+    <h3>Gas Mask</h3>
+  </div>
   <div class="visual">
     <div class="compare" data-compare data-default="0">
       <img src="images/Gasmask.png" alt="Gasmask">
@@ -309,8 +417,10 @@ footer a:hover{color:#fff}
 </section>
 
 <section class="section">
-  <div class="section-label">03 — VR Interaction</div>
-  <h3>Grenade</h3>
+  <div class="section-header">
+    <div class="section-label">VR Interaction</div>
+    <h3>Grenade</h3>
+  </div>
   <div class="visual">
     <div class="compare" data-compare data-default="50">
       <img src="images/Grenade-Wireframe.png" alt="Wireframe">
@@ -325,8 +435,10 @@ footer a:hover{color:#fff}
 </section>
 
 <section class="section">
-  <div class="section-label">04 — VR Weapon Design</div>
-  <h3>Guns</h3>
+  <div class="section-header">
+    <div class="section-label">VR Weapon Design</div>
+    <h3>Guns</h3>
+  </div>
   <div class="visual">
     <img src="images/Makarov.png" alt="Guns">
   </div>
@@ -336,89 +448,46 @@ footer a:hover{color:#fff}
 </section>
 
 <section class="section">
-  <div class="section-label">05 — VR Systems</div>
-  <h3>Chessboard</h3>
-  <div class="layout-side">
-    <div class="visual">
-      <div class="compare" data-compare data-default="0">
-        <img src="images/Chessboard.png" alt="Chessboard">
-        <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
-        <div class="compare-handle"></div>
-        <input type="range" min="0" max="100" value="0" class="compare-range">
-      </div>
-    </div>
-    <div class="section-text">
-      <p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation.</p>
-    </div>
+  <div class="section-header">
+    <div class="section-label">Game Development</div>
+    <h3>Chessboard</h3>
   </div>
-</section>
-
-<section class="section">
-  <div class="section-label">06 — Interaction Design</div>
-  <div class="props-special">
-    <div class="text-overlay">
-      <h3>Props</h3>
-      <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response.</p>
-    </div>
+  <div class="visual">
     <div class="compare" data-compare data-default="0">
-      <img src="images/Props.png" alt="Props">
-      <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
+      <img src="images/Chessboard.png" alt="Chessboard">
+      <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
       <div class="compare-handle"></div>
       <input type="range" min="0" max="100" value="0" class="compare-range">
     </div>
   </div>
-</section>
-
-<section class="section">
-  <div class="section-label">07 — Mobile Realism</div>
-  <h3>Harmonica</h3>
-  <div class="layout-side">
-    <div class="visual">
-      <div class="compare" data-compare data-default="0">
-        <img src="images/Harmonica.png" alt="Harmonica">
-        <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
-        <div class="compare-handle"></div>
-        <input type="range" min="0" max="100" value="0" class="compare-range">
-      </div>
-    </div>
-    <div class="section-text">
-      <p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
-    </div>
+  <div class="section-text">
+    <p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation — representing game development as a whole rather than a single asset.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-label">08 — Immersive UI</div>
-  <h3>PDA</h3>
-  <div class="layout-side">
-    <div class="visual">
-      <div class="compare" data-compare data-default="0">
-        <img src="images/PDA.png" alt="PDA">
-        <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
-        <div class="compare-handle"></div>
-        <input type="range" min="0" max="100" value="0" class="compare-range">
-      </div>
-    </div>
-    <div class="section-text">
-      <p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
-    </div>
+  <div class="section-header">
+    <div class="section-label">Immersive UI</div>
+    <h3>PDA</h3>
   </div>
-</section>
-
-<section class="section">
-  <div class="section-label">09 — Production Speed</div>
-  <h3>Stylized RTS Buildings</h3>
   <div class="visual">
-    <img src="images/RTS.png" alt="Stylized RTS Buildings">
+    <div class="compare" data-compare data-default="0">
+      <img src="images/PDA.png" alt="PDA">
+      <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
+      <div class="compare-handle"></div>
+      <input type="range" min="0" max="100" value="0" class="compare-range">
+    </div>
   </div>
   <div class="section-text">
-    <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+    <p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-label">10 — Historical Fidelity</div>
-  <h3>Jerry Can</h3>
+  <div class="section-header">
+    <div class="section-label">Historical Fidelity</div>
+    <h3>Jerry Can</h3>
+  </div>
   <div class="visual">
     <div class="compare" data-compare data-default="0">
       <img src="images/JerryCan.png" alt="Jerry Can">
@@ -432,6 +501,60 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Interaction Design</div>
+    <h3>Props</h3>
+  </div>
+  <div class="visual">
+    <div class="compare" data-compare data-default="0">
+      <img src="images/Props.png" alt="Props">
+      <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
+      <div class="compare-handle"></div>
+      <input type="range" min="0" max="100" value="0" class="compare-range">
+    </div>
+  </div>
+  <div class="section-text">
+    <p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Production Speed</div>
+    <h3>Stylized RTS Buildings</h3>
+  </div>
+  <div class="visual">
+    <img src="images/RTS.png" alt="Stylized RTS Buildings">
+  </div>
+  <div class="section-text">
+    <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="section-header">
+    <div class="section-label">Contact</div>
+    <h3>Get in touch</h3>
+  </div>
+  <form class="contact-form" id="contact-form" action="https://formspree.io/f/xanpgqkw" method="POST">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your name" autocomplete="name">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Tell me about the project or opportunity…"></textarea>
+    </div>
+    <button type="submit" id="submit-btn">Send message</button>
+    <div class="form-status" id="form-status" aria-live="polite"></div>
+  </form>
+</section>
+
 <footer>
   <p>Natan P. · Technical Artist · São Paulo (UTC-3)</p>
   <p><a href="mailto:eremitecodex@protonmail.com">eremitecodex@protonmail.com</a></p>
@@ -440,95 +563,198 @@ footer a:hover{color:#fff}
 </div>
 
 <script>
+/* Before/After compare sliders */
+document.querySelectorAll('[data-compare]').forEach(function(el){
+  var range = el.querySelector('.compare-range');
+  var after = el.querySelector('.after');
+  var handle = el.querySelector('.compare-handle');
+  var def = el.getAttribute('data-default') || '0';
+  range.value = def;
+  function update(){
+    var v = range.value;
+    after.style.width = v + '%';
+    handle.style.left = v + '%';
+  }
+  range.addEventListener('input', update);
+  update();
+});
+
+/* Contact form (Formspree) */
 (function(){
-  const canvas = document.getElementById('grid');
-  const ctx = canvas.getContext('2d');
-  let w, h, points = [], mouse = {x:0,y:0};
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  var btn = document.getElementById('submit-btn');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    btn.disabled = true;
+    status.textContent = 'Sending…';
+    status.className = 'form-status';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if(res.ok){
+        status.textContent = 'Message sent. I’ll get back to you soon.';
+        form.reset();
+      } else {
+        status.textContent = 'Something went wrong. Please try again or email me directly.';
+        status.className = 'form-status error';
+      }
+    }).catch(function(){
+      status.textContent = 'Network error. Please email me directly.';
+      status.className = 'form-status error';
+    }).finally(function(){
+      btn.disabled = false;
+    });
+  });
+})();
+
+/* Wireframe terrain background — low opacity, looping, mouse-reactive */
+(function(){
+  var canvas = document.getElementById('wire-terrain');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var W, H;
+  var cols = 48;
+  var rows = 28;
+  var points = [];
+  var time = 0;
+  var mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function initGrid(){
     points = [];
-    const gap = 70;
-    for(let x = 0; x < w + gap; x += gap){
-      for(let y = 0; y < h + gap; y += gap){
-        points.push({
-          x: x + (Math.random()-0.5)*18,
-          y: y + (Math.random()-0.5)*18,
-          ox: x, oy: y,
-          vx: 0, vy: 0
+    for(var j = 0; j <= rows; j++){
+      var row = [];
+      for(var i = 0; i <= cols; i++){
+        row.push({
+          ox: i / cols,
+          oy: j / rows,
+          z: 0
         });
       }
+      points.push(row);
     }
+  }
+
+  function noise(x, y, t){
+    return Math.sin(x * 3.1 + t * 0.6) * 0.35
+         + Math.sin(y * 2.7 - t * 0.45) * 0.3
+         + Math.sin((x + y) * 1.8 + t * 0.35) * 0.25
+         + Math.sin(x * 5.2 - y * 3.1 + t * 0.8) * 0.12;
+  }
+
+  function project(p){
+    var perspective = 1.15;
+    var scale = Math.min(W, H) * 0.95;
+    var cx = W * 0.5;
+    var cy = H * 0.58;
+    var x = (p.ox - 0.5) * scale;
+    var y = (p.oy - 0.5) * scale * 0.55;
+    var z = p.z * scale * 0.22;
+    var depth = 1 / (perspective - (p.oy - 0.5) * 0.35);
+    return {
+      x: cx + x * depth,
+      y: cy + (y - z) * depth
+    };
   }
 
   function draw(){
-    ctx.clearRect(0,0,w,h);
-    ctx.strokeStyle = 'rgba(180,180,180,0.15)';
-    ctx.lineWidth = 0.6;
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(140, 180, 220, 0.55)';
+    ctx.lineWidth = 0.7;
+    ctx.lineJoin = 'round';
 
-    for(let i=0;i<points.length;i++){
-      const p = points[i];
-      const dx = mouse.x - p.x;
-      const dy = mouse.y - p.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if(dist < 160){
-        const force = (160 - dist) / 160;
-        p.vx -= (dx / dist) * force * 0.4;
-        p.vy -= (dy / dist) * force * 0.4;
-      }
-      p.vx += (p.ox - p.x) * 0.03;
-      p.vy += (p.oy - p.y) * 0.03;
-      p.vx *= 0.92;
-      p.vy *= 0.92;
-      p.x += p.vx;
-      p.y += p.vy;
-    }
-
-    for(let i=0;i<points.length;i++){
-      for(let j=i+1;j<points.length;j++){
-        const a = points[i], b = points[j];
-        const dx = a.x - b.x, dy = a.y - b.y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if(d < 95){
-          ctx.globalAlpha = 1 - d/95;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-    ctx.globalAlpha = 1;
-
-    ctx.fillStyle = 'rgba(200,200,200,0.35)';
-    for(const p of points){
+    // horizontal lines
+    for(var j = 0; j <= rows; j++){
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.1, 0, Math.PI*2);
-      ctx.fill();
+      for(var i = 0; i <= cols; i++){
+        var p = project(points[j][i]);
+        if(i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      }
+      ctx.stroke();
     }
-    requestAnimationFrame(draw);
+    // vertical lines
+    for(var i = 0; i <= cols; i++){
+      ctx.beginPath();
+      for(var j = 0; j <= rows; j++){
+        var p = project(points[j][i]);
+        if(j === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      }
+      ctx.stroke();
+    }
   }
 
-  window.addEventListener('resize', resize);
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  resize();
-  draw();
+  function update(){
+    mouse.x += (mouse.tx - mouse.x) * 0.06;
+    mouse.y += (mouse.ty - mouse.y) * 0.06;
 
-  document.querySelectorAll('[data-compare]').forEach(function(el){
-    var range = el.querySelector('.compare-range');
-    var after = el.querySelector('.after');
-    var handle = el.querySelector('.compare-handle');
-    var def = el.getAttribute('data-default') || '0';
-    range.value = def;
-    function update(){
-      var v = range.value;
-      after.style.width = v + '%';
-      handle.style.left = v + '%';
+    var mx = (mouse.x - 0.5) * 2;
+    var my = (mouse.y - 0.5) * 2;
+
+    for(var j = 0; j <= rows; j++){
+      for(var i = 0; i <= cols; i++){
+        var p = points[j][i];
+        var n = noise(p.ox + mx * 0.15, p.oy + my * 0.12, time);
+        // mouse influence — gentle bulge near cursor
+        var dx = p.ox - mouse.x;
+        var dy = p.oy - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var influence = Math.exp(-dist * dist * 8) * 0.55;
+        p.z = n + influence * (0.4 + Math.sin(time * 1.2) * 0.15);
+      }
     }
-    range.addEventListener('input', update);
-    update();
+  }
+
+  function loop(){
+    if(!reduced){
+      time += 0.012;
+      update();
+      draw();
+    }
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', function(){
+    resize();
+    initGrid();
   });
+
+  window.addEventListener('mousemove', function(e){
+    mouse.tx = e.clientX / W;
+    mouse.ty = e.clientY / H;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e){
+    if(e.touches[0]){
+      mouse.tx = e.touches[0].clientX / W;
+      mouse.ty = e.touches[0].clientY / H;
+    }
+  }, { passive: true });
+
+  resize();
+  initGrid();
+  if(reduced){
+    update();
+    draw();
+  } else {
+    loop();
+  }
 })();
 </script>
 </body>
