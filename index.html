@@ -220,7 +220,7 @@ header{
   border-bottom:1px solid #161616;
 }
 
-/* Platinum reflective sweep on title — 2s loop */
+/* Platinum reflective sweep on title — continuous seamless loop */
 .intro h2{
   font-family:'Syne',sans-serif;
   font-weight:600;
@@ -229,21 +229,21 @@ header{
   margin-bottom:16px;
   display:inline-block;
   background:linear-gradient(
-    105deg,
+    90deg,
     #6a6a6a 0%,
-    #6a6a6a 35%,
-    #c8c8c8 42%,
-    #f0f0f0 50%,
-    #c8c8c8 58%,
-    #6a6a6a 65%,
+    #6a6a6a 25%,
+    #b8b8b8 40%,
+    #f2f2f2 50%,
+    #b8b8b8 60%,
+    #6a6a6a 75%,
     #6a6a6a 100%
   );
-  background-size:220% 100%;
+  background-size:200% 100%;
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
   color:transparent;
-  animation:platinumSweep 2s ease-in-out infinite;
+  animation:platinumSweep 2s linear infinite;
 }
 @keyframes platinumSweep{
   0%{background-position:100% 50%}
