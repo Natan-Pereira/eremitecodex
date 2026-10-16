@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eremitecodex.art — Technical Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#0a0a0a;color:#e8e8e8;font-family:'Inter',system-ui,sans-serif;font-weight:300;line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+
+header{padding:48px 0 36px;border-bottom:1px solid #222}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{width:48px;height:48px;background:#111;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.12em;color:#666}
+.identity h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;letter-spacing:0.02em;color:#fff}
+.identity p{font-size:13px;color:#888;margin-top:4px;letter-spacing:0.04em}
+
+.intro{padding:64px 0 48px}
+.intro h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;color:#fff;margin-bottom:18px;letter-spacing:0.01em}
+.intro p{max-width:640px;color:#b0b0b0;font-size:15px}
+
+.section{padding:56px 0;border-top:1px solid #1a1a1a}
+.section-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#666;margin-bottom:12px;font-weight:500}
+.section h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:26px;color:#fff;margin-bottom:20px}
+
+.artwork{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.artwork.reverse{direction:rtl}
+.artwork.reverse>*{direction:ltr}
+.artwork-visual{position:relative}
+.artwork-text p{color:#a8a8a8;font-size:14.5px;margin-bottom:14px}
+.artwork-text p:last-child{margin-bottom:0}
+
+.compare{position:relative;overflow:hidden;background:#111;user-select:none}
+.compare img{width:100%;display:block;pointer-events:none}
+.compare .after{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
+.compare .after img{position:absolute;top:0;left:0;height:100%;width:auto;max-width:none}
+.compare-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;cursor:ew-resize;z-index:5;transform:translateX(-50%)}
+.compare-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,0.4)}
+.compare-handle::after{content:'↔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:14px;color:#111;font-weight:500}
+.compare-range{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:10;margin:0}
+
+.single-img{background:#111}
+.single-img img{margin:0 auto}
+
+.props-layout{position:relative}
+.props-layout .text-overlay{position:absolute;top:24px;right:24px;max-width:280px;text-align:right;z-index:2}
+.props-layout .text-overlay h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;margin-bottom:10px}
+.props-layout .text-overlay p{font-size:13px;color:#ccc;line-height:1.55}
+
+footer{padding:48px 0 64px;border-top:1px solid #1a1a1a;margin-top:24px}
+footer p{font-size:13px;color:#555;letter-spacing:0.03em}
+footer a{color:#888;border-bottom:1px solid #333}
+
+@media(max-width:800px){
+.artwork,.artwork.reverse{grid-template-columns:1fr;direction:ltr;gap:28px}
+.header-inner{flex-direction:column;align-items:flex-start}
+.props-layout .text-overlay{position:static;max-width:100%;text-align:left;margin-bottom:16px}
+.props-layout .text-overlay h3{margin-top:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="header-inner">
+<div class="logo">LOGO</div>
+<div class="identity">
+<h1>Natan P.</h1>
+<p>Technical Artist · Unreal Engine · eremitecodex.art</p>
+</div>
+</div>
+</header>
+
+<section class="intro">
+<h2>High fidelity under constraint.</h2>
+<p>Self-taught Technical Artist based in São Paulo. Over a decade creating real-time assets that hold visual quality while surviving strict performance budgets on mobile, standalone VR and legacy platforms. Full pipeline — modeling, materials, optimization, Blueprints and production tooling.</p>
+</section>
+
+<section class="section" id="chessboard">
+<div class="section-label">01</div>
+<div class="artwork">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/Chessboard.png" alt="Chessboard">
+<div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Chessboard</h3>
+<p>Part of a full VR chess project built from the ground up. Even a seemingly simple game carries significant technical complexity once spatial interaction, piece physics, table presence and performance on standalone hardware enter the equation.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="grenade">
+<div class="section-label">02</div>
+<div class="artwork reverse">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/Grenade.png" alt="Grenade">
+<div class="after"><img src="images/Grenade-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Grenade</h3>
+<p>Designed specifically for VR interaction. The pin assembly is fully modeled so the fuze becomes visible when the pin is pulled. Research into recovered WWII MK2 grenades informed both the form and the weathered paint treatment. Every internal detail was intentional.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="makarov">
+<div class="section-label">03</div>
+<div class="artwork">
+<div class="artwork-visual single-img">
+<img src="images/Makarov.png" alt="Makarov">
+</div>
+<div class="artwork-text">
+<h3>Makarov</h3>
+<p>Weapons for VR demand a different poly budget philosophy. Exposed mechanical parts receive denser geometry while less visible surfaces are optimized aggressively. Careful UV layout and material study of real ballistic surfaces are essential to keep fidelity without breaking performance targets.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="gasmask">
+<div class="section-label">04</div>
+<div class="artwork reverse">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/Gasmask.png" alt="Gasmask">
+<div class="after"><img src="images/Gasmask-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Gas Mask</h3>
+<p>Glass on mobile is expensive and often impossible to deliver with true reflections. A custom Master Material uses a matcap-based approach to approximate reflective response even when alpha-supported glass is not viable. Soft organic forms are particularly costly on constrained hardware — deliberate design choices such as the squared lens geometry allowed higher overall detail while remaining performant.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="harmonica">
+<div class="section-label">05</div>
+<div class="artwork">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/Harmonica.png" alt="Harmonica">
+<div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Harmonica</h3>
+<p>Proof that convincing real-world materials are achievable on mobile when PBR values are carefully tuned. Metallic and roughness ranges were iterated until the surface response felt authentic under typical mobile lighting conditions without relying on heavy reflection probes.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="jerrycan">
+<div class="section-label">06</div>
+<div class="artwork reverse">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/JerryCan.png" alt="Jerry Can">
+<div class="after"><img src="images/JerryCan-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Jerry Can</h3>
+<p>Good assets begin with research. Historical study of the WWII “Jerry can”, its manufacturing marks and field wear informed every texture decision — from dust accumulation at the base to the slightly stylized paint degradation. The goal is player connection even through the most ordinary objects.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="props">
+<div class="section-label">07</div>
+<div class="props-layout">
+<div class="text-overlay">
+<h3>Props</h3>
+<p>Complex liquid shaders remain costly on mobile. Creative constraints become design decisions — the darker glass of the bottle conceals technical limits while remaining coherent with the world. Syringes and interactive props are designed for staged use, haptic feedback and audio response, blending technical and artistic considerations into a single player experience.</p>
+</div>
+<div class="compare" data-compare>
+<img src="images/Props.png" alt="Props">
+<div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+</section>
+
+<section class="section" id="watches">
+<div class="section-label">08</div>
+<div class="artwork">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/Wristwatches.png" alt="Tactical Watches">
+<div class="after"><img src="images/Wristwatches-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>Tactical Watch + Radiometer</h3>
+<p>The strongest objects for the player are those whose design already merges technique and art. These watches contain their own interface logic and internal systems that connect to broader game mechanics. Instead of falling back to flat 2D UI, the devices themselves become the interface, increasing immersion.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="pda">
+<div class="section-label">09</div>
+<div class="artwork reverse">
+<div class="artwork-visual">
+<div class="compare" data-compare>
+<img src="images/PDA.png" alt="PDA">
+<div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
+<div class="compare-handle"></div>
+<input type="range" min="0" max="100" value="50" class="compare-range">
+</div>
+</div>
+<div class="artwork-text">
+<h3>PDA</h3>
+<p>Like the watches, the PDA carries its own interface system designed to host menus that would otherwise live as pure 2D widgets. Thinking about interaction and systems from the earliest design stage allows deeper player connection with key objects.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="rts">
+<div class="section-label">10</div>
+<div class="artwork">
+<div class="artwork-visual single-img">
+<img src="images/RTS.png" alt="Stylized RTS Buildings">
+</div>
+<div class="artwork-text">
+<h3>Stylized RTS Buildings</h3>
+<p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<p>Natan P. · Technical Artist · <a href="mailto:eremitecodex@protonmail.com">eremitecodex@protonmail.com</a> · São Paulo (UTC-3)</p>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('[data-compare]').forEach(function(el){
+  var range = el.querySelector('.compare-range');
+  var after = el.querySelector('.after');
+  var handle = el.querySelector('.compare-handle');
+  function update(){
+    var v = range.value;
+    after.style.width = v + '%';
+    handle.style.left = v + '%';
+  }
+  range.addEventListener('input', update);
+  update();
+});
+</script>
+</body>
+</html>
