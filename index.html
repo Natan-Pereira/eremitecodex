@@ -87,18 +87,18 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b1{
   width:70vw;height:70vw;
-  background:#2a2210;
+  background:#2a2a2a;
   top:-20%;left:-16%;
   animation:floatA 16s ease-in-out infinite;
-  opacity:0.45;
+  opacity:0.4;
 }
 .ambient-blob.b2{
   width:55vw;height:55vw;
-  background:#4a3a18;
+  background:#3d3d3d;
   bottom:-16%;right:-10%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-5s;
-  opacity:0.38;
+  opacity:0.35;
 }
 .ambient-blob.b3{
   width:48vw;height:48vw;
@@ -106,23 +106,23 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   top:30%;left:40%;
   animation:floatC 16s ease-in-out infinite;
   animation-delay:-9s;
-  opacity:0.5;
+  opacity:0.45;
 }
 .ambient-blob.b4{
   width:42vw;height:42vw;
-  background:#3d3014;
+  background:#333;
   top:58%;left:-6%;
   animation:floatA 16s ease-in-out infinite;
   animation-delay:-12s;
-  opacity:0.35;
+  opacity:0.32;
 }
 .ambient-blob.b5{
   width:38vw;height:38vw;
-  background:#5c4a20;
+  background:#2e2e2e;
   top:10%;right:4%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-7s;
-  opacity:0.32;
+  opacity:0.36;
 }
 @keyframes floatA{
   0%,100%{transform:translate(0,0) scale(1)}
@@ -220,7 +220,7 @@ header{
   border-bottom:1px solid #161616;
 }
 
-/* Title: discrete heart pulse on "Love"; gold sweep across full line on each beat (~72 bpm) */
+/* Title: continuous platinum sweep across full line */
 .intro h2{
   font-family:'Syne',sans-serif;
   font-weight:600;
@@ -230,49 +230,23 @@ header{
   display:inline-block;
   background:linear-gradient(
     90deg,
-    #8a8a8a 0%,
-    #8a8a8a 18%,
-    #c4a35a 32%,
-    #f0e0b0 42%,
-    #fff8e0 50%,
-    #f0e0b0 58%,
-    #c4a35a 68%,
-    #8a8a8a 82%,
-    #8a8a8a 100%
+    #6a6a6a 0%,
+    #6a6a6a 25%,
+    #b8b8b8 40%,
+    #f2f2f2 50%,
+    #b8b8b8 60%,
+    #6a6a6a 75%,
+    #6a6a6a 100%
   );
-  background-size:220% 100%;
-  background-position:100% 50%;
+  background-size:200% 100%;
   -webkit-background-clip:text;
   background-clip:text;
   -webkit-text-fill-color:transparent;
   color:transparent;
-  animation:titleSweep 0.83s linear infinite;
+  animation:platinumSweep 2s linear infinite;
 }
-.intro h2 .love{
-  display:inline-block;
-  transform-origin:center center;
-  animation:heartPulse 0.83s ease-in-out infinite;
-  /* inherit gradient from parent via transparent fill still works when parent clips — keep same clip */
-  -webkit-text-fill-color:transparent;
-  color:transparent;
-}
-.intro h2 .rest{
-  -webkit-text-fill-color:transparent;
-  color:transparent;
-}
-@keyframes heartPulse{
-  0%{transform:scale(1)}
-  12%{transform:scale(1.035)}
-  24%{transform:scale(1)}
-  36%{transform:scale(1.02)}
-  48%{transform:scale(1)}
-  100%{transform:scale(1)}
-}
-/* Sweep only during the beat window, then rest */
-@keyframes titleSweep{
+@keyframes platinumSweep{
   0%{background-position:100% 50%}
-  12%{background-position:100% 50%}
-  48%{background-position:-100% 50%}
   100%{background-position:-100% 50%}
 }
 
@@ -421,26 +395,16 @@ header{
   text-transform:uppercase;
   padding:12px 20px;
   border-radius:8px;
-  transition:background 0.2s, color 0.2s, border-color 0.2s;
-}
-.availability a.email-link{
-  background:rgba(14,14,14,0.9);
-  border:1px solid rgba(255,255,255,0.12);
-  color:#ddd;
-}
-.availability a.email-link:hover{
-  background:rgba(24,24,24,0.95);
-  color:#fff;
-  border-color:rgba(255,255,255,0.22);
-}
-.availability a.cv-btn{
   background:transparent;
   border:1px solid rgba(255,255,255,0.14);
   color:#aaa;
+  transition:background 0.2s, color 0.2s, border-color 0.2s;
 }
+.availability a.email-link:hover,
 .availability a.cv-btn:hover{
   color:#fff;
   border-color:rgba(255,255,255,0.28);
+  background:transparent;
 }
 footer .copyright{
   margin-top:18px;
@@ -480,7 +444,6 @@ footer a:hover{color:#fff}
 
 @media(prefers-reduced-motion:reduce){
   .intro h2{animation:none;-webkit-text-fill-color:#c8c8c8;color:#c8c8c8;background:none}
-  .intro h2 .love{animation:none;transform:none}
   .ambient-blob{animation:none}
 }
 </style>
@@ -521,7 +484,7 @@ footer a:hover{color:#fff}
 </div>
 
 <section class="intro">
-  <h2><span class="love">Love</span><span class="rest"> for the craft.</span></h2>
+  <h2>Love for the craft.</h2>
   <p>Self-taught Brazilian Technical Artist based in São Paulo (UTC-3), with over a decade of experience in high-quality 3D asset production and technical art. Specialized in creating high-fidelity assets while maintaining strict performance targets for mobile, console, and other constrained platforms. Has provided services to companies worldwide, combining strong technical problem-solving with a full production pipeline approach.</p>
 </section>
 
