@@ -23,7 +23,6 @@ body{
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block;background:transparent}
 
-/* Full-site ambient — B&W, stronger contrast, covers entire page */
 .ambient{
   position:fixed;
   inset:0;
@@ -35,21 +34,20 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   position:absolute;
   border-radius:50%;
   filter:blur(100px);
-  opacity:0.35;
-  animation:float 14s ease-in-out infinite;
-  will-change:transform, opacity;
+  will-change:transform;
 }
 .ambient-blob.b1{
   width:70vw;height:70vw;
   background:#1a1a1a;
   top:-20%;left:-15%;
-  animation-delay:0s;
+  animation:floatA 14s ease-in-out infinite;
   opacity:0.5;
 }
 .ambient-blob.b2{
   width:55vw;height:55vw;
   background:#2e2e2e;
   bottom:-15%;right:-10%;
+  animation:floatB 14s ease-in-out infinite;
   animation-delay:-4s;
   opacity:0.4;
 }
@@ -57,6 +55,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   width:45vw;height:45vw;
   background:#0a0a0a;
   top:30%;left:40%;
+  animation:floatC 14s ease-in-out infinite;
   animation-delay:-8s;
   opacity:0.55;
 }
@@ -64,6 +63,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   width:40vw;height:40vw;
   background:#222;
   top:60%;left:-5%;
+  animation:floatA 14s ease-in-out infinite;
   animation-delay:-11s;
   opacity:0.38;
 }
@@ -71,20 +71,10 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   width:35vw;height:35vw;
   background:#181818;
   top:10%;right:5%;
+  animation:floatB 14s ease-in-out infinite;
   animation-delay:-6s;
   opacity:0.42;
 }
-@keyframes float{
-  0%,100%{transform:translate(0,0) scale(1);opacity:0.35}
-  25%{transform:translate(4%,5%) scale(1.08);opacity:0.5}
-  50%{transform:translate(-3%,-4%) scale(0.94);opacity:0.28}
-  75%{transform:translate(2%,-3%) scale(1.04);opacity:0.45}
-}
-.ambient-blob.b1{animation-name:floatA}
-.ambient-blob.b2{animation-name:floatB}
-.ambient-blob.b3{animation-name:floatC}
-.ambient-blob.b4{animation-name:floatA}
-.ambient-blob.b5{animation-name:floatB}
 @keyframes floatA{
   0%,100%{transform:translate(0,0) scale(1)}
   33%{transform:translate(5%,6%) scale(1.1)}
@@ -199,14 +189,19 @@ header{
 .section{
   padding:56px 0;
   border-bottom:1px solid #121212;
-  text-align:center;
 }
 .section:last-of-type{border-bottom:none}
 
+/* Title left + wireframe button right */
 .section-header{
-  text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:16px;
   margin-bottom:20px;
+  text-align:left;
 }
+.section-header-text{min-width:0}
 .section-label{
   font-size:10px;
   letter-spacing:0.2em;
@@ -223,11 +218,37 @@ header{
   letter-spacing:-0.01em;
 }
 
-/* Transparent visual area — no dark card */
+.compare-btn{
+  flex-shrink:0;
+  background:rgba(14,14,14,0.9);
+  border:1px solid rgba(255,255,255,0.1);
+  color:#ccc;
+  font-family:'Inter',system-ui,sans-serif;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background 0.2s, color 0.2s, border-color 0.2s;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  white-space:nowrap;
+}
+.compare-btn:hover{
+  background:rgba(22,22,22,0.95);
+  color:#fff;
+  border-color:rgba(255,255,255,0.18);
+}
+.compare-btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
 .visual-card{
   background:transparent;
   border:none;
-  border-radius:0;
   padding:0;
   margin:0 auto 24px;
   max-width:720px;
@@ -238,7 +259,6 @@ header{
   background:transparent;
   border-radius:12px;
   overflow:hidden;
-  position:relative;
 }
 .visual img{margin:0 auto;border-radius:12px}
 
@@ -257,42 +277,6 @@ header{
   position:absolute;top:0;left:0;height:100%;width:auto;max-width:none;border-radius:12px;
 }
 
-/* Button flush against bottom of image */
-.compare-toggle{
-  display:flex;
-  justify-content:center;
-  margin-top:0;
-  position:relative;
-  z-index:2;
-}
-.compare-btn{
-  margin-top:-1px;
-  background:rgba(12,12,12,0.85);
-  border:1px solid rgba(255,255,255,0.08);
-  border-top:none;
-  color:#ccc;
-  font-family:'Inter',system-ui,sans-serif;
-  font-weight:500;
-  font-size:11px;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  padding:10px 22px;
-  border-radius:0 0 10px 10px;
-  cursor:pointer;
-  transition:background 0.2s, color 0.2s, border-color 0.2s;
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-}
-.compare-btn:hover{
-  background:rgba(20,20,20,0.95);
-  color:#fff;
-  border-color:rgba(255,255,255,0.14);
-}
-.compare-btn:disabled{
-  opacity:0.5;
-  cursor:not-allowed;
-}
-
 .section-text{
   color:#888;
   font-size:14.5px;
@@ -304,85 +288,9 @@ header{
 .section-text p{margin-bottom:10px}
 .section-text p:last-child{margin-bottom:0}
 
-.contact{
-  padding:56px 0 32px;
-  border-top:1px solid #161616;
-  border-bottom:1px solid #161616;
-}
-.contact .section-header{margin-bottom:32px}
-.contact-form{
-  max-width:480px;
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  text-align:left;
-}
-.contact-form label{
-  display:block;
-  font-size:11px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:#666;
-  margin-bottom:6px;
-}
-.contact-form input,
-.contact-form textarea{
-  width:100%;
-  background:#0c0c0c;
-  border:1px solid #222;
-  border-radius:10px;
-  padding:14px 16px;
-  color:#e0e0e0;
-  font-family:inherit;
-  font-size:14px;
-  font-weight:300;
-  outline:none;
-  transition:border-color 0.2s, background 0.2s;
-}
-.contact-form input:focus,
-.contact-form textarea:focus{
-  border-color:#444;
-  background:#0f0f0f;
-}
-.contact-form textarea{
-  min-height:120px;
-  resize:vertical;
-}
-.contact-form button[type="submit"]{
-  align-self:flex-start;
-  margin-top:8px;
-  background:#1a1a1a;
-  border:1px solid #333;
-  color:#fff;
-  font-family:'Syne',sans-serif;
-  font-weight:600;
-  font-size:13px;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  padding:14px 28px;
-  border-radius:10px;
-  cursor:pointer;
-  transition:background 0.2s, border-color 0.2s;
-}
-.contact-form button[type="submit"]:hover{
-  background:#222;
-  border-color:#555;
-}
-.contact-form button[type="submit"]:disabled{
-  opacity:0.5;
-  cursor:not-allowed;
-}
-.form-status{
-  font-size:13px;
-  color:#6a9;
-  min-height:20px;
-  margin-top:4px;
-}
-.form-status.error{color:#c66}
-
 footer{
   padding:48px 0 64px;
+  border-top:1px solid #161616;
   text-align:center;
 }
 footer p{
@@ -397,8 +305,13 @@ footer a:hover{color:#fff}
 @media(max-width:700px){
   .intro h2{font-size:24px}
   .banner{border-radius:14px;aspect-ratio:16/10}
+  .section-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .compare-btn{font-size:10px;padding:9px 14px}
   .visual{max-width:100%}
-  .compare-btn{font-size:10px;padding:9px 16px}
 }
 </style>
 </head>
@@ -435,18 +348,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Featured</div>
-    <h3>Tactical Watch + Radiometer</h3>
+    <div class="section-header-text">
+      <div class="section-label">Featured</div>
+      <h3>Tactical Watch + Radiometer</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-1">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-1" data-compare>
         <img src="images/Wristwatches.png" alt="Tactical Watches">
         <div class="after"><img src="images/Wristwatches-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -456,18 +369,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Mobile Realism</div>
-    <h3>Harmonica</h3>
+    <div class="section-header-text">
+      <div class="section-label">Mobile Realism</div>
+      <h3>Harmonica</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-2">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-2" data-compare>
         <img src="images/Harmonica.png" alt="Harmonica">
         <div class="after"><img src="images/Harmonica-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -477,18 +390,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Mobile Optimization</div>
-    <h3>Gas Mask</h3>
+    <div class="section-header-text">
+      <div class="section-label">Mobile Optimization</div>
+      <h3>Gas Mask</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-3">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-3" data-compare>
         <img src="images/Gasmask.png" alt="Gasmask">
         <div class="after"><img src="images/Gasmask-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -498,18 +411,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">VR Interaction</div>
-    <h3>Grenade</h3>
+    <div class="section-header-text">
+      <div class="section-label">VR Interaction</div>
+      <h3>Grenade</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-4">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-4" data-compare>
         <img src="images/Grenade.png" alt="Grenade">
         <div class="after"><img src="images/Grenade-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -519,8 +432,10 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">VR Weapon Design</div>
-    <h3>Guns</h3>
+    <div class="section-header-text">
+      <div class="section-label">VR Weapon Design</div>
+      <h3>Guns</h3>
+    </div>
   </div>
   <div class="visual-card">
     <div class="visual">
@@ -534,18 +449,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Game Development</div>
-    <h3>Chessboard</h3>
+    <div class="section-header-text">
+      <div class="section-label">Game Development</div>
+      <h3>Chessboard</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-5">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-5" data-compare>
         <img src="images/Chessboard.png" alt="Chessboard">
         <div class="after"><img src="images/Chessboard-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -555,18 +470,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Immersive UI</div>
-    <h3>PDA</h3>
+    <div class="section-header-text">
+      <div class="section-label">Immersive UI</div>
+      <h3>PDA</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-6">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-6" data-compare>
         <img src="images/PDA.png" alt="PDA">
         <div class="after"><img src="images/PDA-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -576,18 +491,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Historical Fidelity</div>
-    <h3>Jerry Can</h3>
+    <div class="section-header-text">
+      <div class="section-label">Historical Fidelity</div>
+      <h3>Jerry Can</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-7">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-7" data-compare>
         <img src="images/JerryCan.png" alt="Jerry Can">
         <div class="after"><img src="images/JerryCan-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -597,18 +512,18 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Interaction Design</div>
-    <h3>Props</h3>
+    <div class="section-header-text">
+      <div class="section-label">Interaction Design</div>
+      <h3>Props</h3>
+    </div>
+    <button type="button" class="compare-btn" data-toggle-for="cmp-8">Show Wireframe</button>
   </div>
   <div class="visual-card">
     <div class="visual">
-      <div class="compare" data-compare>
+      <div class="compare" id="cmp-8" data-compare>
         <img src="images/Props.png" alt="Props">
         <div class="after"><img src="images/Props-Wireframe.png" alt="Wireframe"></div>
       </div>
-    </div>
-    <div class="compare-toggle">
-      <button type="button" class="compare-btn">Show Wireframe</button>
     </div>
   </div>
   <div class="section-text">
@@ -618,8 +533,10 @@ footer a:hover{color:#fff}
 
 <section class="section">
   <div class="section-header">
-    <div class="section-label">Production Speed</div>
-    <h3>Stylized RTS Buildings</h3>
+    <div class="section-header-text">
+      <div class="section-label">Production Speed</div>
+      <h3>Stylized RTS Buildings</h3>
+    </div>
   </div>
   <div class="visual-card">
     <div class="visual">
@@ -629,29 +546,6 @@ footer a:hover{color:#fff}
   <div class="section-text">
     <p>Some projects are about shipping product, not gallery pieces. Reusable materials, shared texture sets and custom export tooling made it possible to produce a full set of stylized buildings for an Age of Empires–inspired RTS in only two days.</p>
   </div>
-</section>
-
-<section class="contact">
-  <div class="section-header">
-    <div class="section-label">Contact</div>
-    <h3>Get in touch</h3>
-  </div>
-  <form class="contact-form" id="contact-form" action="https://formspree.io/f/xanpgqkw" method="POST">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required placeholder="Your name" autocomplete="name">
-    </div>
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
-    </div>
-    <div>
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required placeholder="Tell me about the project or opportunity…"></textarea>
-    </div>
-    <button type="submit" id="submit-btn">Send message</button>
-    <div class="form-status" id="form-status" aria-live="polite"></div>
-  </form>
 </section>
 
 <footer>
@@ -674,7 +568,7 @@ footer a:hover{color:#fff}
   function tryPlay(){
     var p = v.play();
     if(p && typeof p.then === 'function'){
-      p.catch(function(){ /* autoplay blocked until interaction */ });
+      p.catch(function(){});
     }
   }
   tryPlay();
@@ -682,7 +576,6 @@ footer a:hover{color:#fff}
     if(!document.hidden) tryPlay();
   });
   window.addEventListener('focus', tryPlay);
-  /* Some browsers need a user gesture fallback */
   document.body.addEventListener('click', function once(){
     tryPlay();
     document.body.removeEventListener('click', once);
@@ -690,11 +583,12 @@ footer a:hover{color:#fff}
 })();
 
 /* Animated wireframe toggle — 2s wipe */
-document.querySelectorAll('[data-compare]').forEach(function(el){
-  var card = el.closest('.visual-card');
-  var btn = card ? card.querySelector('.compare-btn') : null;
+document.querySelectorAll('.compare-btn[data-toggle-for]').forEach(function(btn){
+  var id = btn.getAttribute('data-toggle-for');
+  var el = document.getElementById(id);
+  if(!el) return;
   var after = el.querySelector('.after');
-  if(!btn || !after) return;
+  if(!after) return;
 
   var showingWire = false;
   var animating = false;
@@ -736,38 +630,6 @@ document.querySelectorAll('[data-compare]').forEach(function(el){
     requestAnimationFrame(frame);
   });
 });
-
-/* Contact form (Formspree) */
-(function(){
-  var form = document.getElementById('contact-form');
-  var status = document.getElementById('form-status');
-  var btn = document.getElementById('submit-btn');
-  if(!form) return;
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    btn.disabled = true;
-    status.textContent = 'Sending…';
-    status.className = 'form-status';
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(function(res){
-      if(res.ok){
-        status.textContent = 'Message sent. I’ll get back to you soon.';
-        form.reset();
-      } else {
-        status.textContent = 'Something went wrong. Please try again or email me directly.';
-        status.className = 'form-status error';
-      }
-    }).catch(function(){
-      status.textContent = 'Network error. Please email me directly.';
-      status.className = 'form-status error';
-    }).finally(function(){
-      btn.disabled = false;
-    });
-  });
-})();
 </script>
 </body>
 </html>
