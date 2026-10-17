@@ -16,6 +16,7 @@ body{
   font-size:15px;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  position:relative;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block;background:transparent}
@@ -30,7 +31,7 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  transition:opacity 0.6s ease, visibility 0.6s ease;
+  transition:opacity 1s ease, visibility 1s ease;
 }
 #loader.hide{
   opacity:0;
@@ -75,6 +76,19 @@ img{max-width:100%;height:auto;display:block;background:transparent}
   z-index:0;
   pointer-events:none;
   overflow:hidden;
+}
+#code-rain{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity 1s ease;
+  mask-image:radial-gradient(ellipse 55% 70% at 50% 45%, transparent 0%, transparent 35%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.85) 75%, black 100%);
+  -webkit-mask-image:radial-gradient(ellipse 55% 70% at 50% 45%, transparent 0%, transparent 35%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.85) 75%, black 100%);
+}
+#code-rain.ready{
+  opacity:0.2;
 }
 .ambient-blob{
   position:absolute;
@@ -444,6 +458,7 @@ footer a:hover{color:#fff}
 </div>
 
 <div class="ambient">
+  <canvas id="code-rain" aria-hidden="true"></canvas>
   <div class="ambient-blob b1"></div>
   <div class="ambient-blob b2"></div>
   <div class="ambient-blob b3"></div>
@@ -732,6 +747,11 @@ footer a:hover{color:#fff}
       loader.classList.add('hide');
       loader.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      /* Black fade is 1s; reveal code rain 1s after fade starts */
+      setTimeout(function(){
+        var rain = document.getElementById('code-rain');
+        if(rain) rain.classList.add('ready');
+      }, 1000);
     }, wait);
   }
 
@@ -841,6 +861,126 @@ document.querySelectorAll('.compare-btn[data-toggle-for]').forEach(function(btn)
     requestAnimationFrame(frame);
   });
 });
+
+/* ========== TECH ART CODE RAIN (fixed) ========== */
+(function(){
+  var canvas = document.getElementById('code-rain');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced){ canvas.style.display = 'none'; return; }
+
+  var tokens = [
+    'UV','UVMapping','Unwrap','TexelDensity','LightmapUV','Channel',
+    'PBR','Albedo','Normal','Roughness','Metallic','Specular','AO','ORM',
+    'LOD','Nanite','Mesh','StaticMesh','SkeletalMesh','Topology','Polycount',
+    'Skeleton','Rigging','Skinning','WeightPaint','Bone','Socket','IK','FK',
+    'Material','MaterialFunction','MasterMaterial','Instance','Shader','HLSL',
+    'Blueprint','Tick','BeginPlay','Component','Actor','Pawn','Character',
+    'FVector','FRotator','FTransform','TArray','UObject','AActor','UWorld',
+    'Blender','GeometryNodes','Modifiers','Bake','Retopo','Sculpt','Quad',
+    'Substance','Painter','SmartMaterial','Generator','Layer','Mask',
+    'Unreal','Niagara','Cascade','VFX','Particle','GPU','DrawCall',
+    'Pipeline','Optimize','Performance','Profiling','Budget','Overdraw',
+    'Mobile','VR','Console','Standalone','Quest','PCVR','AR',
+    'Texture','Atlas','Padding','Mipmap','Compression','BC7','ASTC',
+    'Animation','Sequence','Montage','BlendSpace','Driver','Constraint',
+    'Physics','Collision','Convex','Capsule','Haptics','Interact',
+    'HighFidelity','TechnicalArt','GameDesign','Immersion','HeroProp',
+    'Instanced','HISM','ISM','VirtualTexture','Streaming','Culling',
+    'DeltaTime','Transform','Location','Rotation','Scale','Pivot',
+    'VertexColor','VertexPaint','Decal','TrimSheet','Modular',
+    'Export','Import','FBX','glTF','USD','Datasmith','Python'
+  ];
+
+  var columns = [];
+  var fontSize = 13;
+  var cols = 0;
+  var dpr = 1;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    fontSize = Math.max(11, Math.min(14, Math.floor(window.innerWidth / 90)));
+    /* Wider columns = lower density */
+    var colW = fontSize * 2.4;
+    cols = Math.ceil(window.innerWidth / colW);
+    columns = [];
+    for(var i = 0; i < cols; i++){
+      columns.push({
+        x: i * colW + Math.random() * 4,
+        y: Math.random() * window.innerHeight * -1.2,
+        speed: 0.35 + Math.random() * 0.55,
+        chars: [],
+        /* ~30% of columns start idle to keep density low */
+        idle: Math.random() < 0.3 ? (60 + Math.random() * 120) : 0
+      });
+      refillColumn(i);
+    }
+  }
+
+  function refillColumn(i){
+    var len = 6 + Math.floor(Math.random() * 12);
+    var chars = [];
+    for(var j = 0; j < len; j++){
+      chars.push(tokens[Math.floor(Math.random() * tokens.length)]);
+    }
+    columns[i].chars = chars;
+  }
+
+  function draw(){
+    /* Stronger trail fade prevents accumulation over time */
+    ctx.fillStyle = 'rgba(2,2,2,0.18)';
+    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+    ctx.font = fontSize + 'px "Segoe UI", Consolas, monospace';
+    ctx.textBaseline = 'top';
+
+    for(var i = 0; i < columns.length; i++){
+      var col = columns[i];
+
+      if(col.idle > 0){
+        col.idle--;
+        continue;
+      }
+
+      var x = col.x;
+      var y = col.y;
+      var step = fontSize + 2;
+
+      for(var j = 0; j < col.chars.length; j++){
+        var cy = y + j * step;
+        if(cy < -fontSize || cy > window.innerHeight + fontSize) continue;
+
+        var alpha = 0.12 + (j / col.chars.length) * 0.22;
+        if(j === col.chars.length - 1) alpha = 0.42;
+
+        ctx.fillStyle = 'rgba(180,180,180,' + alpha + ')';
+        ctx.fillText(col.chars[j], x, cy);
+      }
+
+      col.y += col.speed;
+
+      if(col.y - col.chars.length * step > window.innerHeight){
+        col.y = -Math.random() * window.innerHeight * 0.5 - col.chars.length * fontSize;
+        col.speed = 0.35 + Math.random() * 0.55;
+        refillColumn(i);
+        /* Pause some columns after a pass so density stays capped */
+        if(Math.random() < 0.35) col.idle = 40 + Math.random() * 100;
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
