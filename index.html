@@ -84,42 +84,42 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 }
 .ambient-blob.b1{
   width:70vw;height:70vw;
-  background:#141414;
+  background:#2a2a2a;
   top:-20%;left:-16%;
   animation:floatA 16s ease-in-out infinite;
-  opacity:0.4;
+  opacity:0.55;
 }
 .ambient-blob.b2{
   width:55vw;height:55vw;
-  background:#1c1c1c;
+  background:#333333;
   bottom:-16%;right:-10%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-5s;
-  opacity:0.35;
+  opacity:0.5;
 }
 .ambient-blob.b3{
   width:48vw;height:48vw;
-  background:#0a0a0a;
+  background:#222222;
   top:30%;left:40%;
   animation:floatC 16s ease-in-out infinite;
   animation-delay:-9s;
-  opacity:0.45;
+  opacity:0.6;
 }
 .ambient-blob.b4{
   width:42vw;height:42vw;
-  background:#161616;
+  background:#2e2e2e;
   top:58%;left:-6%;
   animation:floatA 16s ease-in-out infinite;
   animation-delay:-12s;
-  opacity:0.32;
+  opacity:0.45;
 }
 .ambient-blob.b5{
   width:38vw;height:38vw;
-  background:#121212;
+  background:#282828;
   top:10%;right:4%;
   animation:floatB 16s ease-in-out infinite;
   animation-delay:-7s;
-  opacity:0.36;
+  opacity:0.5;
 }
 @keyframes floatA{
   0%,100%{transform:translate(0,0) scale(1)}
@@ -148,24 +148,10 @@ img{max-width:100%;height:auto;display:block;background:transparent}
 header{
   padding:40px 0 0;
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  width:44px;height:44px;
-  background:#111;
-  border:1px solid #2a2a2a;
-  border-radius:10px;
-  display:inline-flex;
-  align-items:center;
   justify-content:center;
-  font-size:9px;
-  font-weight:500;
-  letter-spacing:0.14em;
-  color:#666;
-  flex-shrink:0;
+  align-items:center;
 }
-.identity{text-align:right}
+.identity{text-align:center}
 .identity h1{
   font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
   font-weight:600;
@@ -195,9 +181,9 @@ header{
     0 20px 60px rgba(0,0,0,0.5),
     0 0 80px rgba(60,60,60,0.25),
     inset 0 1px 0 rgba(255,255,255,0.08);
-  background:rgba(10,10,10,0.6);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
+  background:rgba(10,10,10,0.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 .banner video{
   width:100%;
@@ -291,9 +277,9 @@ header{
 
 .compare-btn{
   flex-shrink:0;
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(255,255,255,0.14);
   color:#aaa;
   font-family:'Segoe UI',SegoeUI,system-ui,-apple-system,sans-serif;
@@ -308,7 +294,7 @@ header{
   white-space:nowrap;
 }
 .compare-btn:hover{
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.1);
   color:#fff;
   border-color:rgba(255,255,255,0.28);
 }
@@ -318,17 +304,17 @@ header{
 }
 
 .visual-card{
-  background:rgba(255,255,255,0.03);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.035);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.09);
   border-radius:16px;
   padding:12px;
   margin:0 auto 24px;
   max-width:744px;
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.07);
 }
 .visual{
   margin:0 auto;
@@ -401,9 +387,9 @@ header{
   text-transform:uppercase;
   padding:12px 20px;
   border-radius:8px;
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(255,255,255,0.14);
   color:#aaa;
   transition:background 0.2s, color 0.2s, border-color 0.2s;
@@ -412,7 +398,7 @@ header{
 .availability a.cv-btn:hover{
   color:#fff;
   border-color:rgba(255,255,255,0.28);
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.1);
 }
 footer .copyright{
   margin-top:18px;
@@ -478,7 +464,6 @@ footer a:hover{color:#fff}
 <div class="wrap">
 
 <header>
-  <div class="logo">LOGO</div>
   <div class="identity">
     <h1>Natan P.</h1>
     <p>Technical Artist · Unreal Engine</p>
